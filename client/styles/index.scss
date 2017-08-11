@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  @import 'Header.scss';
+  @import 'SearchBar.scss';
+  @import 'MovieList.scss';
+}
