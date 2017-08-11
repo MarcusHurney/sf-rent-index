@@ -1,5 +1,7 @@
 const graphql = require('graphql');
 const axios = require('axios');
+const API_CONFIG = require('../../../client/config/api-config.js');
+const { API_KEY } = API_CONFIG;
 
 const {
   GraphQLObjectType,
@@ -11,8 +13,6 @@ const {
 } = graphql;
 
 const MovieType = require('./movie_type');
-
-const API_KEY = '6fd70b4bd1000f3d59a30a8d478ddaea';
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
