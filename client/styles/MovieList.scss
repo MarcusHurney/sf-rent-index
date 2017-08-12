@@ -1,14 +1,13 @@
 .photo-grid-container {
-  display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.85);
-  padding-top: 1rem;
+	display: flex;
+	justify-content: center;
+	padding-top: 1rem;
+	padding-bottom: 5rem;
 }
 
 .photo-grid {
-  border: 1px solid purple;
-  width: 900px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+	width: 900px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 }

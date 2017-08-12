@@ -21,8 +21,6 @@ const RootQueryType = new GraphQLObjectType({
       type: MovieType,
       args: { movieId: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, { movieId }, req) {
-        console.log("parentValue ", parentValue);
-        console.log("movieId ", movieId);
         return axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`)
           .then(({ data }) => data);
       }

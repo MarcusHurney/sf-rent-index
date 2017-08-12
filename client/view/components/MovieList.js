@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import _ from 'lodash';
 
-import MoviePreviewCard from './MoviePreviewCard';
 import SearchBar from './SearchBar';
+import MoviePreviewCard from './MoviePreviewCard';
+
 
 class MovieList extends Component {
+  clearSearch = () => {
+    this.props.updateSearchTerm('');
+  }
+
   searchMovies = searchTerm => {
     return _.debounce(term => {
       this.props.updateSearchTerm(term);
@@ -15,7 +20,7 @@ class MovieList extends Component {
   renderMovieCards = movies => {
     return movies.map(movie => {
       return (
-        <Link to={`/movies/${movie.id}`} key={movie.id}>
+        <Link key={movie.id} to={`/movies/${movie.id}`} onClick={this.clearSearch}>
           <MoviePreviewCard movie={movie} />
         </Link>
       );

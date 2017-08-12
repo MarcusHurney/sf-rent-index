@@ -19,7 +19,11 @@ const MovieType = new GraphQLObjectType({
     backdrop_path: { type: GraphQLString },
     original_language: { type: GraphQLString },
     overview: { type: GraphQLString },
-    release_date: { type: GraphQLString }
+    release_date: { type: GraphQLString },
+    status: { type: GraphQLString },
+    revenue: { type: GraphQLInt },
+    budget: { type: GraphQLInt },
+    tagline: { type: GraphQLString }
   }
 });
 

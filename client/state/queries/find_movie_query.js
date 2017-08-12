@@ -6,6 +6,17 @@ export const findMovieQuery = gql`
       id
       title
       vote_count
+      vote_average
+      popularity
+      poster_path
+      backdrop_path
+      original_language
+      overview
+      release_date
+      status
+      revenue
+      budget
+      tagline
     }
   }
 `;

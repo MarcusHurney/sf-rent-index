@@ -1,25 +1,23 @@
 $main-font-color: #fff;
 
-html,
-body,
-.viewport {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: Helvetica;
-}
+html, body, .viewport {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica;
+  background-color: #303030;
+  height: 100%;
 
-a {
+  a {
     text-decoration: none;
     color: $main-font-color;
-}
+  }
 
-#root {
-  flex: 1;
-  @import 'SearchBar.scss';
-  @import 'MovieList.scss';
-  @import 'MoviePreviewCard.scss'
+  #root {
+    @import 'SearchBar.scss';
+    @import 'MovieList.scss';
+    @import 'MoviePreviewCard.scss';
+    @import 'MovieDetail.scss';
+  }
 }
