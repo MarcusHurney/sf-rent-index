@@ -12,17 +12,17 @@ const MovieType = new GraphQLObjectType({
   fields: {
     id: { type: GraphQLID },
     title: { type: GraphQLString },
-    vote_count: { type: GraphQLInt },
-    vote_average: { type: GraphQLInt },
-    popularity: { type: GraphQLInt },
+    vote_count: { type: GraphQLString },
+    vote_average: { type: GraphQLString },
+    popularity: { type: GraphQLString },
     poster_path: { type: GraphQLString },
     backdrop_path: { type: GraphQLString },
     original_language: { type: GraphQLString },
     overview: { type: GraphQLString },
     release_date: { type: GraphQLString },
     status: { type: GraphQLString },
-    revenue: { type: GraphQLInt },
-    budget: { type: GraphQLInt },
+    revenue: { type: GraphQLString },
+    budget: { type: GraphQLString },
     tagline: { type: GraphQLString }
   }
 });
