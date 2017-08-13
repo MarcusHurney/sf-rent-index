@@ -19,6 +19,7 @@
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "graphql": "^0.10.5",
+    "halogen": "^0.2.0",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-apollo": "^0.9.0",

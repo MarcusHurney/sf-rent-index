@@ -15,6 +15,7 @@ html, body, .viewport {
   }
 
   #root {
+    @import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave');
     @import 'SearchBar.scss';
     @import 'MovieList.scss';
     @import 'MoviePreviewCard.scss';

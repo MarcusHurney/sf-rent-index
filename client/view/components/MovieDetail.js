@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { GridLoader } from 'halogen';
 import API_CONFIG from '../../config/api-config.js';
 
 const { IMAGE_PATH } = API_CONFIG;
@@ -46,7 +47,7 @@ class MovieDetail extends Component {
         </div>
       );
     }
-    return null;
+    return <div className="gridloader"><GridLoader color={'#D8D8D8'}/></div>;
   }
 
   render() {

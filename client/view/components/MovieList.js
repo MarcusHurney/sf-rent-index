@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { GridLoader } from 'halogen';
 import _ from 'lodash';
 
 import SearchBar from './SearchBar';
 import MoviePreviewCard from './MoviePreviewCard';
-
 
 class MovieList extends Component {
   clearSearch = () => {
@@ -35,7 +35,7 @@ class MovieList extends Component {
     } else if (!loading && searchMovies) {
       return this.renderMovieCards(searchMovies);
     }
-    return <div />;
+    return <div><GridLoader className="gridloader" color={'#D8D8D8'}/></div>;
   }
 
   render() {
