@@ -7,7 +7,19 @@ const { IMAGE_PATH } = API_CONFIG;
 class MovieDetail extends Component {
   renderContent = () => {
     if (!this.props.data.loading) {
-      const { poster_path, title, overview, release_date, original_language, vote_count, vote_average, status, revenue, budget, tagline } = this.props.data.findMovie;
+      const {
+        poster_path,
+        title,
+        overview,
+        release_date,
+        original_language,
+        vote_count,
+        vote_average,
+        status,
+        revenue,
+        budget,
+        tagline
+      } = this.props.data.findMovie;
 
       return (
         <div className="content-container">

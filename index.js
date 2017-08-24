@@ -1,5 +1,8 @@
 const app = require('./server/server');
 
-app.listen(4000, () => {
-  console.log('Listening on port 4000');
+// PORT will be set by Heroku if app is in Production
+const PORT = process.env.PORT || 5000;
+
+app.listen(5000, () => {
+  console.log('Listening on port 5000');
 });

@@ -24,6 +24,6 @@ export const findMovieQuery = gql`
 export const findMovieOptions = {
   options: props => ({
     notifyOnNetworkStatusChange: false,
-    variables: { movieId: props.params.movieId }
+    variables: { movieId: props.match.params.movieId }
   })
 };

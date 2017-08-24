@@ -1,22 +1,23 @@
 const graphql = require('graphql');
 const axios = require('axios');
-const API_CONFIG = require('../../../client/config/api-config.js');
-const { API_KEY } = API_CONFIG;
+const MovieType = require('./movie_type');
+const UserType = require('./user_type');
+const API_CONFIG = require('../../client/config/api-config.js');
 
 const {
   GraphQLObjectType,
-  GraphQLID,
   GraphQLString,
   GraphQLList,
   GraphQLNonNull,
+  GraphQLID,
   GraphQLInt
 } = graphql;
 
-const MovieType = require('./movie_type');
+const { API_KEY } = API_CONFIG;
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
-  fields: () => ({
+  fields: {
     findMovie: {
       type: MovieType,
       args: { movieId: { type: new GraphQLNonNull(GraphQLID) } },
@@ -43,8 +44,15 @@ const RootQueryType = new GraphQLObjectType({
         return axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`)
           .then(({ data: { results } }) => results);
       }
+    },
+    currentUser: {
+      type: UserType,
+      resolve(parentValue, args, { user }) {
+        return user;
+      }
     }
-  })
+
+  }
 });
 
 module.exports = RootQueryType;

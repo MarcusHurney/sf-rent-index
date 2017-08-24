@@ -1,16 +1,24 @@
 import React from 'react';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
-import App from '../view/components/App.js';
+import Header from '../view/components/Header';
+import LoginFormContainer from '../view/containers/LoginFormContainer';
+import SignupFormContainer from '../view/containers/SignupFormContainer';
 import MovieListContainer from '../view/containers/MovieListContainer';
 import MovieDetailContainer from '../view/containers/MovieDetailContainer';
+import Dashboard from '../view/components/Dashboard';
+import requireAuth from '../view/components/requireAuth';
 
 const RouterConfig = () => (
-  <Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={MovieListContainer} />
-      <Route path="movies/:movieId" component={MovieDetailContainer} />
-    </Route>
+  <Router hashType="slash">
+    <div>
+      <Header />
+      <Route exact path="/" component={MovieListContainer} />
+      <Route path="/login" component={LoginFormContainer} />
+      <Route path="/signup" component={SignupFormContainer} />
+      <Route path="/movies/:movieId" component={MovieDetailContainer} />
+      <Route path="/dashboard" component={requireAuth(Dashboard)} />
+    </div>
   </Router>
 );
 
