@@ -11,12 +11,12 @@ const schema = require('./schema');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('../webpack.config.js');
-const { MY_MONGO_URI } = require('./config/mongo-config.js');
+const { MY_MONGO_URI } = require('./config/keys.js');
 
 // Create a new Express application
 const app = express();
 
-// Replace with your mongoLab URI
+// Replace with your MongoLab URI
 const MONGO_URI = MY_MONGO_URI;
 
 // Mongoose's built in promise library is deprecated, replace it with ES2015 Promise
