@@ -1,0 +1,45 @@
+$main-font-color: black;
+$primary_background_color: #FCFCFC;
+$primary_red: #EE6E73;
+
+html {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $primary_background_color;
+  min-height: 100vh;
+
+  a {
+    text-decoration: none;
+  }
+
+  #root {
+    min-height: 100vh;
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css');
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+    @import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave');
+    // @import './styles/SearchBar.scss';
+    // @import './styles/LoginForm.scss';
+    // @import './styles/AuthForm.scss';
+    // @import './styles/MovieList.scss';
+    // @import './styles/MoviePreviewCard.scss';
+    // @import './styles/MovieDetail.scss';
+    @import './view/Landing/styles/index.scss';
+    @import './view/Navigation/styles/index.scss';
+    @import './view/Login/styles/index.scss';
+    @import './view/Common/styles/index.scss';
+  }
+
+  #root > div {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.primary_red {
+  background-color: $primary_red !important;
+}

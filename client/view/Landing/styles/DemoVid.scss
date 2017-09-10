@@ -1,0 +1,35 @@
+.demo_container {
+  display: flex;
+  flex: 7;
+  flex-direction: column;
+  justify-content: center;;
+  align-items: center;
+  background-color: $primary_background_color;
+
+  .demo_hero {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Proxima Nova','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: $primary_red;
+  }
+
+  .vid_container {
+    flex: 9.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 80vw;
+
+    iframe {
+      flex: 1;
+      border: none;
+      padding-bottom: 5vh;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.banner_container {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  background-image: url("http://i65.tinypic.com/mcdul3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  justify-content: flex-start;
+  align-items: center;
+
+  .hero {
+    font-family: 'Proxima Nova','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 52px;
+    color: $primary_red;
+    padding-top: 17vh;
+  }
+
+  .sub_hero {
+    font-family: 'Proxima Nova','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 275;
+    line-height: 52px;
+    color: $primary_red;
+    padding-top: 5vh;
+  }
+
+  .call_to_action {
+    padding-top: 5vh;
+  }
+}
