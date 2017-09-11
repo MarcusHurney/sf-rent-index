@@ -1,15 +1,18 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const BUILD_DIR = path.join(__dirname, "build");
+const CLIENT_DIR = path.join(__dirname, "client");
+
 module.exports = {
-  entry: './client/index.js',
+  entry: CLIENT_DIR,
   output: {
-    path: path.resolve(__dirname, '/'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    path: BUILD_DIR,
+    filename: "bundle.js"
   },
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -35,6 +38,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: 'client/index.html' }),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new webpack.EnvironmentPlugin(['NODE_ENV'])
   ]
 };

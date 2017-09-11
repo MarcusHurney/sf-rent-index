@@ -3,14 +3,11 @@
 # dependencies
 /node_modules
 
-# testing
-/coverage
-
-# production
-/build
 
 # private keys
 
+# build files
+/build
 
 # misc
 .DS_Store

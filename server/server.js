@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const models = require('./models');
 const expressGraphQL = require('express-graphql');
 const bodyParser = require('body-parser');
@@ -10,11 +11,17 @@ const MongoStore = require('connect-mongo')(session);
 const schema = require('./schema');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
-const webpackConfig = require('../webpack.config.js');
+const webpackBaseConfig = require('../webpack.base.config.js');
 const { MY_MONGO_URI } = require('./config/keys.js');
 
 // Create a new Express application
 const app = express();
+
+// Check for environment and define baths
+const isDevelopment = process.env.NODE_ENV !== "production";
+const BUILD_DIR = path.resolve(__dirname, '../build');
+const HTML_FILE = path.resolve(__dirname, '../client/index.html');
+const baseCompiler = webpack(webpackBaseConfig);
 
 // Replace with your MongoLab URI
 const MONGO_URI = MY_MONGO_URI;
@@ -56,6 +63,11 @@ app.use('/graphql', expressGraphQL({
   graphiql: true
 }));
 
-app.use(webpackMiddleware(webpack(webpackConfig)));
+if (isDevelopment) {
+  app.use(webpackMiddleware(baseCompiler));
+} else {
+  app.use(express.static(BUILD_DIR));
+  app.get("*", (req, res) => res.sendFile(HTML_FILE));
+}
 
 module.exports = app;
