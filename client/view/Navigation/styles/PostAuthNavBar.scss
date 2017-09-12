@@ -1,0 +1,20 @@
+#postauth_navbar_container {
+  nav {
+    background-color: #FDFDFD !important;
+    border-bottom: 1px solid $primary_red;
+  }
+
+  #nav_logo {
+    padding-left: 1rem;
+    font-size: 4rem;
+    color: $primary_red;
+  }
+
+  #logo_text {
+    color: $primary_red;
+  }
+
+  button {
+    margin-right: 3vw;
+  }
+}

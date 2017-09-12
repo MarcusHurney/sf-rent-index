@@ -1,11 +1,11 @@
 import { graphql, compose } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
-import LandingNavBar from '../components/LandingNavBar';
+import PostAuthNavBar from '../components/PostAuthNavBar';
 import { getCurrentUser } from '../../../state/Common/queries';
-import { login } from '../../../state/Login/mutations';
+import { logout } from '../../../state/Login/mutations';
 
 
 export default compose(
   graphql(getCurrentUser),
-  graphql(login)
-)(withRouter(LandingNavBar));
+  graphql(logout)
+)(withRouter(PostAuthNavBar));

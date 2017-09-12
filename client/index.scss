@@ -1,6 +1,7 @@
-$main-font-color: black;
+$main-font-color: #2D333A;
 $primary_background_color: #FCFCFC;
 $primary_red: #EE6E73;
+$error_red: #F44336;
 
 html {
   height: 100vh;
@@ -21,12 +22,6 @@ body {
     @import url('https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css');
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
     @import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave');
-    // @import './styles/SearchBar.scss';
-    // @import './styles/LoginForm.scss';
-    // @import './styles/AuthForm.scss';
-    // @import './styles/MovieList.scss';
-    // @import './styles/MoviePreviewCard.scss';
-    // @import './styles/MovieDetail.scss';
     @import './view/Landing/styles/index.scss';
     @import './view/Navigation/styles/index.scss';
     @import './view/Login/styles/index.scss';

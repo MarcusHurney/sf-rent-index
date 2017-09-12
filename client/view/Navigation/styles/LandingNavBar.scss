@@ -19,7 +19,15 @@
     background-color: $primary_background_color;
 
     input {
-      color: black;
+      color: $main-font-color;
+    }
+
+    .errors {
+      color: $error_red;
+
+      p {
+        margin-top: 0;
+      }
     }
   }
 }

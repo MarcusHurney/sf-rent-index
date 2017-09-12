@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { getCurrentUser } from '../../../state/Common/queries';
 
 class LandingNavBar extends Component {
   state = {
     email: '',
     password: '',
     errors: []
+  }
+
+  componentWillUpdate(nextProps) {
+    if (!this.props.data.currentUser && nextProps.data.currentUser) {
+      // push to MapView component
+      this.props.history.push('map');
+    }
   }
 
   handleLogin = ({ email, password }) => {
@@ -66,7 +74,7 @@ class LandingNavBar extends Component {
                     </div>
 
                     <div className="errors">
-                      {this.state.errors.map(error => <div key={error}>{error}</div>)}
+                      {this.state.errors.map(error => <p key={error}>{error}</p>)}
                     </div>
 
                     <button className="btn">Submit</button>
