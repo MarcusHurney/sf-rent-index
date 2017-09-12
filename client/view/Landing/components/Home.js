@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LandingNavBar from '../../Navigation/components/LandingNavBar';
+import LandingNavBarContainer from '../../Navigation/containers/LandingNavBarContainer';
 import Banner from './Banner';
 import DemoVid from './DemoVid';
 
@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <div className="home_container">
-        <LandingNavBar />
+        <LandingNavBarContainer />
         <Banner />
         <DemoVid />
       </div>
