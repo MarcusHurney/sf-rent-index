@@ -41,10 +41,8 @@ class Signup extends Component {
   }
 
   renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
-    console.log(error)
     return (
       <div>
-        <label>{label}</label>
         <div>
           <input {...input} placeholder={label} type={type} />
           {
@@ -75,9 +73,26 @@ class Signup extends Component {
 
     if (stepIndex === 2) {
       return (
-        <button type="submit" disabled={submitting}>
-          Submit
-        </button>
+        <div style={{margin: '12px 0'}}>
+          <RaisedButton
+            label={'Submit'}
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            primary={true}
+            onClick={this.handleNext}
+            style={{marginRight: 12}}
+          />
+          {step > 0 && (
+            <FlatButton
+              label="Back"
+              disabled={stepIndex === 0}
+              disableTouchRipple={true}
+              disableFocusRipple={true}
+              onClick={this.handlePrev}
+            />
+          )}
+        </div>
+
       );
     } else {
       return (
@@ -124,30 +139,25 @@ class Signup extends Component {
                </Step>
 
                <Step>
-                 <StepLabel>Create an ad group</StepLabel>
+                 <StepLabel>Property Details</StepLabel>
                  <StepContent>
                    <Field
-                     name="number_roommates"
+                     name="number_bedrooms"
                      component={this.renderSelectField}
-                     label="Favorite Color"
+                     label="Number of bedrooms"
                    >
-                     <MenuItem value="1" primaryText="1" />
-                     <MenuItem value="2" primaryText="2" />
-                     <MenuItem value="3" primaryText="3" />
+                     <MenuItem value="1" primaryText="Yo" />
+                     <MenuItem value="2" primaryText="What up" />
+                     <MenuItem value="3" primaryText="Varun" />
                    </Field>
                    {this.renderStepActions(1)}
                  </StepContent>
                </Step>
 
                <Step>
-                 <StepLabel>Create an ad</StepLabel>
+                 <StepLabel>Perks</StepLabel>
                  <StepContent>
-                   <p>
-                     Try out different ad text to see what brings in the most customers,
-                     and learn how to enhance your ads using features like ad extensions.
-                     If you run into any problems with your ads, find out how to tell if
-                     they're running and how to resolve approval issues.
-                   </p>
+                   <Field name="perks" type="text" component={this.renderField} label="gym, sauna, view" />
                    {this.renderStepActions(2)}
                  </StepContent>
                </Step>
