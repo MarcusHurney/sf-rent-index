@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form'
 
+import PostAuthNavBarContainer from '../../Navigation/containers/PostAuthNavBarContainer';
+
 import {
   Step,
   Stepper,
@@ -124,62 +126,65 @@ class Signup extends Component {
     const { finished, stepIndex } = this.state;
 
     return (
-      <div className="signup_container">
-        <Paper zDepth={1} className="paper_container">
-          <div className="stepper_container">
-            <form onSubmit={handleSubmit(this.onSubmit)}>
-              <Stepper activeStep={stepIndex} orientation="vertical">
-                <Step>
-                  <StepLabel>Your Personal Info</StepLabel>
+      <div>
+        <PostAuthNavBarContainer />
+        <div className="signup_container">
+          <Paper zDepth={1} className="paper_container">
+            <div className="stepper_container">
+              <form onSubmit={handleSubmit(this.onSubmit)}>
+                <Stepper activeStep={stepIndex} orientation="vertical">
+                  <Step>
+                    <StepLabel>Your Personal Info</StepLabel>
 
-                  <StepContent>
-                    <Field name="email" type="email" component={this.renderField} label="Email" />
-                   {this.renderStepActions(0)}
-                 </StepContent>
-               </Step>
+                    <StepContent>
+                      <Field name="email" type="email" component={this.renderField} label="Email" />
+                     {this.renderStepActions(0)}
+                   </StepContent>
+                 </Step>
 
-               <Step>
-                 <StepLabel>Property Details</StepLabel>
-                 <StepContent>
-                   <Field
-                     name="number_bedrooms"
-                     component={this.renderSelectField}
-                     label="Number of bedrooms"
+                 <Step>
+                   <StepLabel>Property Details</StepLabel>
+                   <StepContent>
+                     <Field
+                       name="number_bedrooms"
+                       component={this.renderSelectField}
+                       label="Number of bedrooms"
+                     >
+                       <MenuItem value="1" primaryText="Yo" />
+                       <MenuItem value="2" primaryText="What up" />
+                       <MenuItem value="3" primaryText="Varun" />
+                     </Field>
+                     {this.renderStepActions(1)}
+                   </StepContent>
+                 </Step>
+
+                 <Step>
+                   <StepLabel>Perks</StepLabel>
+                   <StepContent>
+                     <Field name="perks" type="text" component={this.renderField} label="gym, sauna, view" />
+                     {this.renderStepActions(2)}
+                   </StepContent>
+                 </Step>
+               </Stepper>
+
+               {finished && (
+                 <p style={{margin: '20px 0', textAlign: 'center'}}>
+                   <a
+                     href="#"
+                     onClick={(event) => {
+                       event.preventDefault();
+                       this.setState({stepIndex: 0, finished: false});
+                     }}
                    >
-                     <MenuItem value="1" primaryText="Yo" />
-                     <MenuItem value="2" primaryText="What up" />
-                     <MenuItem value="3" primaryText="Varun" />
-                   </Field>
-                   {this.renderStepActions(1)}
-                 </StepContent>
-               </Step>
-
-               <Step>
-                 <StepLabel>Perks</StepLabel>
-                 <StepContent>
-                   <Field name="perks" type="text" component={this.renderField} label="gym, sauna, view" />
-                   {this.renderStepActions(2)}
-                 </StepContent>
-               </Step>
-             </Stepper>
-
-             {finished && (
-               <p style={{margin: '20px 0', textAlign: 'center'}}>
-                 <a
-                   href="#"
-                   onClick={(event) => {
-                     event.preventDefault();
-                     this.setState({stepIndex: 0, finished: false});
-                   }}
-                 >
-                   Click here
-                 </a> to reset the example.
-               </p>
-             )}
-           </form>
-         </div>
-       </Paper>
-     </div>
+                     Click here
+                   </a> to reset the example.
+                 </p>
+               )}
+             </form>
+           </div>
+         </Paper>
+       </div>
+      </div>
    );
  }
 }
