@@ -1,5 +1,6 @@
 .banner_container {
-  flex: 3;
+  // flex: 3;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   background-image: url("http://i65.tinypic.com/mcdul3.jpg");

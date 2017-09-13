@@ -12,7 +12,7 @@ const Banner = () => (
     </div>
 
     <div className="call_to_action">
-      <Link to="signup" className="waves-effect waves-light btn-large primary_red">
+      <Link to="/" className="waves-effect waves-light btn-large primary_red">
         <i className="material-icons left">mode_edit</i>Get Started
       </Link>
     </div>

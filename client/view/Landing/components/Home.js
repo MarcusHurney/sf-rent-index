@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LandingNavBarContainer from '../../Navigation/containers/LandingNavBarContainer';
+import SignupContainer from '../../Signup/containers/SignupContainer';
 import Banner from './Banner';
 import DemoVid from './DemoVid';
 
@@ -10,6 +11,7 @@ class Home extends Component {
         <LandingNavBarContainer />
         <Banner />
         <DemoVid />
+        <SignupContainer />
       </div>
     );
   }

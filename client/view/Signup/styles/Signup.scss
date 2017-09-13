@@ -1,14 +1,23 @@
 .signup_container {
-  flex: 1;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding-top: 10vh;
+  padding-top: 15vh;
+
+  .signup_hero {
+    font-family: 'Proxima Nova','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 275;
+    line-height: 52px;
+    color: $primary_red;
+   }
 
   .paper_container {
+    margin-top: 10vh;
     width: 40vw;
-    min-height: 30vh;
+    min-height: 50vh;
 
     .stepper_container {
       flex: 1;

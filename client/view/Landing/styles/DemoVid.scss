@@ -1,6 +1,7 @@
 .demo_container {
+  min-height: 120vh;
   display: flex;
-  flex: 7;
+  // flex: 7;
   flex-direction: column;
   justify-content: center;;
   align-items: center;
@@ -13,8 +14,9 @@
     justify-content: center;
     align-items: center;
     font-family: 'Proxima Nova','Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 30px;
-    font-weight: 300;
+    font-size: 22px;
+    font-weight: 275;
+    line-height: 52px;
     color: $primary_red;
   }
 
