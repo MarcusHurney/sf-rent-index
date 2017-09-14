@@ -1,6 +1,19 @@
-import { graphql } from 'react-apollo';
-import { reduxForm } from 'redux-form'
-import { withRouter } from 'react-router-dom';
+import { graphql, compose } from 'react-apollo';
+import { connect } from 'react-redux';
+import {
+  reduxForm,
+  getFormValues,
+  getFormSyncErrors,
+  getFormMeta,
+  getFormNames,
+  isDirty,
+  isPristine,
+  isValid,
+  isInvalid,
+  isSubmitting,
+  hasSubmitSucceeded,
+  hasSubmitFailed
+} from 'redux-form'
 
 // mutations
 import { signup } from '../../../state/Signup/mutations';
@@ -31,12 +44,29 @@ const validate = values => {
   ) {
     errors.email = 'Invalid email address'
   }
-  return errors
+  return errors;
 }
 
+
 const SignupForm = reduxForm({
-  form: 'SignupForm',
+  form: 'signupForm',
   validate
 })(Signup);
 
-export default graphql(signup)(withRouter(SignupForm));
+export default compose(
+  connect((state) => {
+    return {
+      formValues: getFormValues('signupForm')(state),
+      formErrors: getFormSyncErrors('signupForm')(state),
+      fields: getFormMeta('signupForm')(state),
+      dirty: isDirty('signupForm')(state),
+      pristine: isPristine('signupForm')(state),
+      valid: isValid('signupForm')(state),
+      invalid: isInvalid('signupForm')(state),
+      submitting: isSubmitting('signupForm')(state),
+      submitSucceeded: hasSubmitSucceeded('signupForm')(state),
+      submitFailed: hasSubmitFailed('signupForm')(state)
+    };
+  }),
+  graphql(signup)
+)(SignupForm);

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Field } from 'redux-form'
 
-import PostAuthNavBarContainer from '../../Navigation/containers/PostAuthNavBarContainer';
-
 import {
   Step,
   Stepper,
@@ -38,6 +36,7 @@ class Signup extends Component {
   }
 
   onSubmit = data => {
+    console.log("Submit fired!");
     console.log(this.props);
     console.log(data);
   }
@@ -77,11 +76,11 @@ class Signup extends Component {
       return (
         <div style={{margin: '12px 0'}}>
           <RaisedButton
+            type="submit"
             label={'Submit'}
             disableTouchRipple={true}
             disableFocusRipple={true}
             primary={true}
-            onClick={this.handleNext}
             style={{marginRight: 12}}
           />
           {step > 0 && (
