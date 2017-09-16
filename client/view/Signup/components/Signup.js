@@ -13,6 +13,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import DatePicker from 'material-ui/DatePicker';
 
 class Signup extends Component {
   state = {
@@ -24,7 +25,7 @@ class Signup extends Component {
     const { stepIndex } = this.state;
     this.setState({
       stepIndex: stepIndex + 1,
-      finished: stepIndex >= 2,
+      finished: stepIndex >= 4,
     });
   }
 
@@ -41,7 +42,7 @@ class Signup extends Component {
     console.log(data);
   }
 
-  renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
+  renderInputField = ({ input, label, type, meta: { touched, error, warning } }) => {
     return (
       <div>
         <div>
@@ -68,11 +69,15 @@ class Signup extends Component {
     );
   }
 
+  renderDateField = ({ hintText, meta: { touched, error }}) => {
+    return <DatePicker hintText={hintText} />
+  }
+
   renderStepActions = step => {
     const { stepIndex } = this.state;
     const { submitting } = this.props;
 
-    if (stepIndex === 2) {
+    if (stepIndex === 3) {
       return (
         <div style={{margin: '12px 0'}}>
           <RaisedButton
@@ -99,7 +104,7 @@ class Signup extends Component {
       return (
         <div style={{margin: '12px 0'}}>
           <RaisedButton
-            label={stepIndex === 2 ? 'Finish' : 'Next'}
+            label='Next'
             disableTouchRipple={true}
             disableFocusRipple={true}
             primary={true}
@@ -135,35 +140,85 @@ class Signup extends Component {
             <form onSubmit={handleSubmit(this.onSubmit)}>
               <Stepper activeStep={stepIndex} orientation="vertical">
                 <Step>
-                  <StepLabel>Your Personal Info</StepLabel>
+                  <StepLabel>Lease Details</StepLabel>
 
                   <StepContent>
-                    <Field name="email" type="email" component={this.renderField} label="Email" />
-                   {this.renderStepActions(0)}
-                 </StepContent>
-               </Step>
+                    <Field
+                      name="lease_start_date"
+                      hintText="Lease Start"
+                      component={this.renderDateField}
+                    />
 
-               <Step>
-                 <StepLabel>Property Details</StepLabel>
-                 <StepContent>
-                   <Field
-                     name="number_bedrooms"
-                     component={this.renderSelectField}
-                     label="Number of bedrooms"
-                   >
-                     <MenuItem value="1" primaryText="Yo" />
-                     <MenuItem value="2" primaryText="What up" />
-                     <MenuItem value="3" primaryText="Varun" />
-                   </Field>
-                   {this.renderStepActions(1)}
-                 </StepContent>
-               </Step>
+                    <Field
+                      name="lease_end_date"
+                      hintText="Lease End"
+                      component={this.renderDateField}
+                    />
+
+                    <Field
+                      name="total_rent_cost"
+                      type="text"
+                      component={this.renderInputField}
+                      label="Total price of rent per month"
+                    />
+
+                    <Field
+                      name="estimated_utilities_cost"
+                      type="text"
+                      component={this.renderInputField}
+                      label="Estimated cost of utilities per month"
+                    />
+
+                    {this.renderStepActions(0)}
+                  </StepContent>
+                </Step>
+
+                 <Step>
+                   <StepLabel>Property Details</StepLabel>
+
+                   <StepContent>
+                     <Field
+                       name="number_bedrooms"
+                       component={this.renderSelectField}
+                       label="Number of bedrooms"
+                     >
+                       <MenuItem value="1" primaryText="1" />
+                       <MenuItem value="2" primaryText="2" />
+                       <MenuItem value="3" primaryText="3" />
+                       <MenuItem value="4" primaryText="4" />
+                       <MenuItem value="5" primaryText="5" />
+                       <MenuItem value="5+" primaryText="5+" />
+                     </Field>
+
+                     <Field
+                       name="number_roommates"
+                       component={this.renderSelectField}
+                       label="Number of roommates"
+                     >
+                       <MenuItem value="1" primaryText="1" />
+                       <MenuItem value="2" primaryText="2" />
+                       <MenuItem value="3" primaryText="3" />
+                       <MenuItem value="4" primaryText="4" />
+                       <MenuItem value="5" primaryText="5" />
+                       <MenuItem value="5+" primaryText="5+" />
+                     </Field>
+                     {this.renderStepActions(1)}
+                   </StepContent>
+                 </Step>
 
                <Step>
                  <StepLabel>Perks</StepLabel>
                  <StepContent>
-                   <Field name="perks" type="text" component={this.renderField} label="gym, sauna, view" />
+                   <Field name="perks" type="text" component={this.renderInputField} label="gym, sauna, view" />
                    {this.renderStepActions(2)}
+                 </StepContent>
+               </Step>
+
+               <Step>
+                 <StepLabel>How should we contact you when the data's in?</StepLabel>
+                 <StepContent>
+                   <Field name="email" type="email" component={this.renderInputField} label="Email" />
+                   {this.renderStepActions(3)}
                  </StepContent>
                </Step>
              </Stepper>
