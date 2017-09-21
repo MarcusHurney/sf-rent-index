@@ -13,7 +13,10 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import DatePicker from 'material-ui/DatePicker';
+
+import LabeledSlider from '../../Common/components/LabeledSlider';
+
+import moment from 'moment';
 
 class Signup extends Component {
   state = {
@@ -69,8 +72,21 @@ class Signup extends Component {
     );
   }
 
-  renderDateField = ({ hintText, meta: { touched, error }}) => {
-    return <DatePicker hintText={hintText} />
+  renderSlider = ({ meta: { touched, error } }) => {
+    const startDate = new Date(2015, 0, 1).valueOf();
+    const endDate = new Date().valueOf();
+
+    return (
+      <LabeledSlider
+        min={startDate}
+        max={endDate}
+        formatValue={(value) => {
+          const date = new Date(value);
+          return `${moment(date).format('MMMM YYYY')}`;
+        }}
+        values={[startDate, endDate]}
+      />
+    );
   }
 
   renderStepActions = step => {
@@ -144,15 +160,9 @@ class Signup extends Component {
 
                   <StepContent>
                     <Field
-                      name="lease_start_date"
-                      hintText="Lease Start"
-                      component={this.renderDateField}
-                    />
-
-                    <Field
-                      name="lease_end_date"
-                      hintText="Lease End"
-                      component={this.renderDateField}
+                      name="span_of_lease"
+                      label="Span of Your Lease"
+                      component={this.renderSlider}
                     />
 
                     <Field
@@ -175,6 +185,8 @@ class Signup extends Component {
 
                  <Step>
                    <StepLabel>Property Details</StepLabel>
+
+                   {/* Square Footage */}
 
                    <StepContent>
                      <Field
