@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 15vh;
+  padding-top: 5vh;
 
   .signup_hero {
     font-family: 'Proxima Nova','Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -15,59 +15,35 @@
    }
 
   .paper_container {
-    margin-top: 10vh;
-    width: 40vw;
-    min-height: 50vh;
+    width: 70vw;
+    min-height: 75vh;
 
     .stepper_container {
       flex: 1;
+      min-height: inherit;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      .input_error {
-        padding-top: 0;
-        margin-top: 0;
-        color: $error_red;
-      }
+      .step_content {
+        width: 35vw;
 
-      textarea {
-        color: $main-font-color;
+        .slider_container {
+          width: 80%;
+        }
+
+        .input_error {
+          padding-top: 0;
+          margin-top: 0;
+          color: $error_red;
+        }
+
+        textarea {
+          color: $main-font-color;
+        }
+
       }
     }
-  }
-
-  .rheostat {
-    overflow: visible;
-  }
-
-  .rheostat-background {
-    background-color: #fcfcfc;
-    border: 1px solid #d8d8d8;
-    position: relative;
-  }
-
-  .rheostat-progress {
-    background-color: #abc4e8;
-    position: absolute;
-  }
-
-  .rheostat-handle {
-    background-color: #fff;
-    border: 1px solid #d8d8d8;
-    border-radius: 20%;
-    height: 24px;
-    outline: none;
-    z-index: 2;
-    width: 24px;
-  }
-
-  .rheostat-handle:before,
-  .rheostat-handle:after {
-    content: '';
-    display: block;
-    position: absolute;
-    background-color: #dadfe8;
   }
 }

@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 
 import Rheostat from 'rheostat';
+import CustomHandle from './CustomHandle'
 
-class LabeledSlider extends React.Component {
+class CustomSlider extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,43 +20,47 @@ class LabeledSlider extends React.Component {
     });
   }
 
-  render() {
+  renderValues = () => {
     const { formatValue } = this.props;
 
     return (
-      <div
-        style={{
-          margin: '10% auto',
-          height: '50%',
-          width: '50%',
-        }}
-      >
+      <div className="slider_values">
+        {
+          this.state.values.map((value, index) => (
+            <div key={value}>
+              <label>{index ? 'End' : 'Start'}</label>
+              {formatValue ? formatValue(value) : value}
+            </div>
+          ))
+        }
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div>
         <Rheostat
           {...this.props}
+          handle={CustomHandle}
           onValuesUpdated={this.updateValue}
           values={this.state.values}
         />
-        <ul>
-          <lh>Values</lh>
-          {this.state.values.map(value => (
-            <li key={value}>
-              {formatValue ? formatValue(value) : value}
-            </li>
-          ))}
-        </ul>
+
+        {this.renderValues()}
       </div>
     );
   }
 }
 
-LabeledSlider.propTypes = {
+CustomSlider.propTypes = {
   values: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   formatValue: PropTypes.func,
 };
 
-LabeledSlider.defaultProps = {
+CustomSlider.defaultProps = {
   values: [],
   formatValue: null,
 };
 
-export default LabeledSlider;
+export default CustomSlider;

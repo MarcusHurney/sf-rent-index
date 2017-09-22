@@ -14,9 +14,15 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
-import LabeledSlider from '../../Common/components/LabeledSlider';
-
+import CustomSlider from '../../Common/components/CustomSlider';
+import Rheostat from 'rheostat';
 import moment from 'moment';
+
+const CustomHandle = () => {
+  return(
+    <i className="material-icons">location_searching</i>
+  );
+}
 
 class Signup extends Component {
   state = {
@@ -72,20 +78,22 @@ class Signup extends Component {
     );
   }
 
-  renderSlider = ({ meta: { touched, error } }) => {
+  renderSlider = ({ input, meta: { touched, error } }) => {
     const startDate = new Date(2015, 0, 1).valueOf();
     const endDate = new Date().valueOf();
-
+    console.log(input);
     return (
-      <LabeledSlider
-        min={startDate}
-        max={endDate}
-        formatValue={(value) => {
-          const date = new Date(value);
-          return `${moment(date).format('MMMM YYYY')}`;
-        }}
-        values={[startDate, endDate]}
-      />
+      <div className="slider_container">
+        <CustomSlider
+          min={startDate}
+          max={endDate}
+          formatValue={(value) => {
+            const date = new Date(value);
+            return `${moment(date).format('MMMM YYYY')}`;
+          }}
+          values={[startDate, endDate]}
+        />
+      </div>
     );
   }
 
@@ -93,7 +101,7 @@ class Signup extends Component {
     const { stepIndex } = this.state;
     const { submitting } = this.props;
 
-    if (stepIndex === 3) {
+    if (stepIndex === 4) {
       return (
         <div style={{margin: '12px 0'}}>
           <RaisedButton
@@ -158,28 +166,40 @@ class Signup extends Component {
                 <Step>
                   <StepLabel>Lease Details</StepLabel>
 
-                  <StepContent>
+                  <StepContent className="step_content">
+                    <label style={{ fontSize: '1rem' }}>Span of lease</label>
+
                     <Field
                       name="span_of_lease"
                       label="Span of Your Lease"
                       component={this.renderSlider}
                     />
 
+                    {this.renderStepActions(0)}
+                  </StepContent>
+                </Step>
+
+                <Step>
+                  <StepLabel>Monthly Cost</StepLabel>
+
+                  <StepContent className="step_content">
+
+
                     <Field
                       name="total_rent_cost"
                       type="text"
                       component={this.renderInputField}
-                      label="Total price of rent per month"
+                      label="rent per month -- Ex. $3000"
                     />
 
                     <Field
                       name="estimated_utilities_cost"
                       type="text"
                       component={this.renderInputField}
-                      label="Estimated cost of utilities per month"
+                      label="utilities per month (approx) -- Ex. $100"
                     />
 
-                    {this.renderStepActions(0)}
+                    {this.renderStepActions(1)}
                   </StepContent>
                 </Step>
 
@@ -188,7 +208,7 @@ class Signup extends Component {
 
                    {/* Square Footage */}
 
-                   <StepContent>
+                   <StepContent className="step_content">
                      <Field
                        name="number_bedrooms"
                        component={this.renderSelectField}
@@ -214,23 +234,23 @@ class Signup extends Component {
                        <MenuItem value="5" primaryText="5" />
                        <MenuItem value="5+" primaryText="5+" />
                      </Field>
-                     {this.renderStepActions(1)}
+                     {this.renderStepActions(2)}
                    </StepContent>
                  </Step>
 
                <Step>
                  <StepLabel>Perks</StepLabel>
-                 <StepContent>
+                 <StepContent className="step_content">
                    <Field name="perks" type="text" component={this.renderInputField} label="gym, sauna, view" />
-                   {this.renderStepActions(2)}
+                   {this.renderStepActions(3)}
                  </StepContent>
                </Step>
 
                <Step>
                  <StepLabel>How should we contact you when the data's in?</StepLabel>
-                 <StepContent>
+                 <StepContent className="step_content">
                    <Field name="email" type="email" component={this.renderInputField} label="Email" />
-                   {this.renderStepActions(3)}
+                   {this.renderStepActions(4)}
                  </StepContent>
                </Step>
              </Stepper>
