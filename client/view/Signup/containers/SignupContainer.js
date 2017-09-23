@@ -24,6 +24,7 @@ import Signup from '../components/Signup';
 const validate = values => {
   const errors = {}
   const requiredFields = [
+    'street_address',
     'email',
     'number_bedrooms',
     'square_feet',

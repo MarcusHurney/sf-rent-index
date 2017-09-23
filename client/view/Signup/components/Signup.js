@@ -16,18 +16,19 @@ import FlatButton from 'material-ui/FlatButton';
 
 import CustomSlider from '../../Common/components/CustomSlider';
 import Rheostat from 'rheostat';
-import moment from 'moment';
 
-const CustomHandle = () => {
-  return(
-    <i className="material-icons">location_searching</i>
-  );
-}
+import moment from 'moment';
+import PlacesAutocomplete, { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 
 class Signup extends Component {
   state = {
+    address: '',
     finished: false,
     stepIndex: 0,
+  }
+
+  handleAddressInput = address => {
+    this.setState({ address });
   }
 
   handleNext = () => {
@@ -46,9 +47,56 @@ class Signup extends Component {
   }
 
   onSubmit = data => {
-    console.log("Submit fired!");
-    console.log(this.props);
-    console.log(data);
+    geocodeByAddress(this.props.formValues.address)
+    .then(results => getLatLng(results[0]))
+    .then(latLng => console.log('Success', latLng))
+    .catch(error => console.error('Error', error))
+  }
+
+  renderSuggestion = ({ formattedSuggestion }) => {
+    return (
+      <div>
+        <strong>{ formattedSuggestion.mainText }</strong>{' '}
+        <small>{ formattedSuggestion.secondaryText }</small>
+      </div>
+    );
+  }
+
+  renderAddressInput = ({ input: { onChange, value }, meta }) => {
+    const inputProps = {
+      value,
+      onChange,
+      type: 'search',
+      placeholder: '1580 Gough Street, San Francisco, CA',
+      autoFocus: true,
+    };
+
+    const config = {
+      location: new google.maps.LatLng(37.773972, -122.431297),
+      radius: 19000,
+      types: ['address']
+    };
+
+    const cssClasses = {
+      root: 'form-group',
+      input: 'form-control',
+      autocompleteContainer: 'my-autocomplete-container',
+      autocompleteItem: 'address_suggestion',
+      autocompleteItemActive: 'active_suggestion'
+    };
+
+    return (
+      <div>
+        <PlacesAutocomplete
+          inputProps={inputProps}
+          classNames={cssClasses}
+          options={config}
+          debounce={200}
+          highlightFirstSuggestion={true}
+          autocompleteItem={this.renderSuggestion}
+        />
+      </div>
+    );
   }
 
   renderInputField = ({ input, label, type, meta: { touched, error, warning } }) => {
@@ -101,7 +149,7 @@ class Signup extends Component {
     const { stepIndex } = this.state;
     const { submitting } = this.props;
 
-    if (stepIndex === 4) {
+    if (stepIndex === 5) {
       return (
         <div style={{margin: '12px 0'}}>
           <RaisedButton
@@ -112,15 +160,12 @@ class Signup extends Component {
             primary={true}
             style={{marginRight: 12}}
           />
-          {step > 0 && (
-            <FlatButton
-              label="Back"
-              disabled={stepIndex === 0}
-              disableTouchRipple={true}
-              disableFocusRipple={true}
-              onClick={this.handlePrev}
-            />
-          )}
+          <FlatButton
+            label="Back"
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            onClick={this.handlePrev}
+          />
         </div>
 
       );
@@ -163,19 +208,27 @@ class Signup extends Component {
           <div className="stepper_container">
             <form onSubmit={handleSubmit(this.onSubmit)}>
               <Stepper activeStep={stepIndex} orientation="vertical">
+
+                <Step>
+                  <StepLabel>Street Address</StepLabel>
+
+                  <StepContent className="step_content">
+                    <Field
+                      name="street_address"
+                      component={this.renderAddressInput}
+                    />
+
+                    {this.renderStepActions(0)}
+                  </StepContent>
+                </Step>
+
                 <Step>
                   <StepLabel>Lease Details</StepLabel>
 
                   <StepContent className="step_content">
                     <label style={{ fontSize: '1rem' }}>Span of lease</label>
 
-                    <Field
-                      name="span_of_lease"
-                      label="Span of Your Lease"
-                      component={this.renderSlider}
-                    />
-
-                    {this.renderStepActions(0)}
+                    {this.renderStepActions(1)}
                   </StepContent>
                 </Step>
 
@@ -199,7 +252,7 @@ class Signup extends Component {
                       label="utilities per month (approx) -- Ex. $100"
                     />
 
-                    {this.renderStepActions(1)}
+                    {this.renderStepActions(2)}
                   </StepContent>
                 </Step>
 
@@ -234,7 +287,7 @@ class Signup extends Component {
                        <MenuItem value="5" primaryText="5" />
                        <MenuItem value="5+" primaryText="5+" />
                      </Field>
-                     {this.renderStepActions(2)}
+                     {this.renderStepActions(3)}
                    </StepContent>
                  </Step>
 
@@ -242,7 +295,7 @@ class Signup extends Component {
                  <StepLabel>Perks</StepLabel>
                  <StepContent className="step_content">
                    <Field name="perks" type="text" component={this.renderInputField} label="gym, sauna, view" />
-                   {this.renderStepActions(3)}
+                   {this.renderStepActions(4)}
                  </StepContent>
                </Step>
 
@@ -250,7 +303,7 @@ class Signup extends Component {
                  <StepLabel>How should we contact you when the data's in?</StepLabel>
                  <StepContent className="step_content">
                    <Field name="email" type="email" component={this.renderInputField} label="Email" />
-                   {this.renderStepActions(4)}
+                   {this.renderStepActions(5)}
                  </StepContent>
                </Step>
              </Stepper>

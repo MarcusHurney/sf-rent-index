@@ -43,6 +43,21 @@
           color: $main-font-color;
         }
 
+        .my-autocomplete-container {
+          min-height: 30vh;
+
+          .address_suggestion {
+            background-color: #ffffff;
+            padding: 10px;
+            color: #555555;
+            cursor: pointer;
+          }
+
+          .active_suggestion {
+            background-color: #fafafa;
+          }
+        }
+
       }
     }
   }
