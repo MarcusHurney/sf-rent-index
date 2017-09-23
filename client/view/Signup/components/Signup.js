@@ -94,6 +94,7 @@ class Signup extends Component {
           debounce={200}
           highlightFirstSuggestion={true}
           autocompleteItem={this.renderSuggestion}
+          googleLogo={false}
         />
       </div>
     );
