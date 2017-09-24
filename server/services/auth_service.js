@@ -66,6 +66,25 @@ function signup({ email, password, req }) {
     });
 }
 
+function signupWithoutPassword({ email, req }) {
+  const user = new User({ email});
+  if (!email) { throw new Error('You must provide an email'); }
+
+  return User.findOne({ email })
+    .then(existingUser => {
+      if (existingUser) { throw new Error('Email in use'); }
+      return user.save();
+    })
+    .then(user => {
+      return new Promise((resolve, reject) => {
+        req.logIn(user, (err) => {
+          if (err) { reject(err); }
+          resolve(user);
+        });
+      });
+    });
+}
+
 // Logs in a user.  This will invoke the 'local-strategy' defined above in this
 // file. Notice the strange method signature here: the 'passport.authenticate'
 // function returns a function, as its intended to be used as a middleware with
@@ -90,4 +109,4 @@ function logout(req) {
   return user;
 }
 
-module.exports = { signup, login, logout };
+module.exports = { signup, signupWithoutPassword, login, logout };

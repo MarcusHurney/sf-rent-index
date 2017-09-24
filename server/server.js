@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
-const passportConfig = require('./services/auth');
+const passportConfig = require('./services/auth_service');
 const MongoStore = require('connect-mongo')(session);
 const schema = require('./schema');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -41,6 +41,7 @@ mongoose.connection
 // the cookie and modifies the request object to indicate which user made the request
 // The cookie itself only contains the id of a session; more data about the session
 // is stored inside of MongoDB.
+app.use(bodyParser.json());
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -57,7 +58,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(bodyParser.json());
+// require routes for our instance of express
+require('./routes/formRoutes')(app);
+
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true

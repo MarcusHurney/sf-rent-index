@@ -25,14 +25,14 @@ const validate = values => {
   const errors = {}
   const requiredFields = [
     'street_address',
-    'email',
-    'number_bedrooms',
+    'bedrooms',
     'square_feet',
     'total_rent',
     'room_rent',
-    'number_roommates',
-    'start_date',
-    'end_date'
+    'roommates',
+    'lease_start',
+    'lease_end',
+    'perks'
   ]
   requiredFields.forEach(field => {
     if (!values[field]) {

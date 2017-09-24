@@ -8,7 +8,10 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   email: String,
   password: String,
-  address: String
+  properties: [{
+    type: Schema.Types.ObjectId,
+    ref: 'property'
+  }]
 });
 
 // The user's password is never saved in plain text.  Prior to saving the
