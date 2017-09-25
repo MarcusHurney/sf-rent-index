@@ -6,6 +6,7 @@ const PropertySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
+  long_lat: [Number],
   street_address: String,
   bedrooms: Number,
   square_feet: Number,

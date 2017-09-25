@@ -73,7 +73,7 @@ class Signup extends Component {
 
     const config = {
       location: new google.maps.LatLng(37.773972, -122.431297),
-      radius: 19000,
+      radius: 1000,
       types: ['address']
     };
 

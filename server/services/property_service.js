@@ -5,6 +5,7 @@ function createProperty({ property_data, user_id }) {
 
   const {
     street_address,
+    long_lat,
     bedrooms,
     square_feet,
     total_rent,
@@ -17,6 +18,7 @@ function createProperty({ property_data, user_id }) {
 
   const property = new Property({
     user: user_id,
+    long_lat,
     street_address,
     bedrooms,
     square_feet,
