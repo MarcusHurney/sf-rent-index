@@ -18,7 +18,7 @@ class MapView extends Component {
     return (
       <div>
         <PostAuthNavBarContainer />
-        
+
         <div>
           {this.renderCurrentUser()}
         </div>

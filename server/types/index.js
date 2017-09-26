@@ -1,7 +1,10 @@
 const RootQueryType = require('./root_query_type');
-const MovieType = require('./movie_type');
+const UserType = require('./user_type');
+const PropertyType = require('./property_type');
+
 
 module.exports = {
   RootQueryType,
-  MovieType
+  UserType,
+  PropertyType
 };

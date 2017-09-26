@@ -43,4 +43,10 @@ UserSchema.methods.comparePassword = function comparePassword(candidatePassword,
   });
 };
 
+UserSchema.statics.findProperties = function(id) {
+  return this.findById(id)
+    .populate('properties')
+    .then(user => user.properties);
+}
+
 mongoose.model('user', UserSchema);

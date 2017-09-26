@@ -6,6 +6,7 @@ const {
 } = graphql;
 
 const UserType = require('../types/user_type');
+const PropertyType = require('../types/property_type');
 const AuthService = require('../services/auth_service');
 
 const mutation = new GraphQLObjectType({
@@ -13,6 +14,16 @@ const mutation = new GraphQLObjectType({
   fields: {
     signup: {
       type: UserType,
+      args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
+      },
+      resolve(parentValue, { email, password }, req) {
+        return AuthService.signup({ email, password, req });
+      }
+    },
+    signupWithoutPassword: {
+      type: PropertyType,
       args: {
         email: { type: GraphQLString },
         password: { type: GraphQLString }

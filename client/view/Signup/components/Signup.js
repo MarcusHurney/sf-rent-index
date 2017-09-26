@@ -14,9 +14,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-
-import CustomSlider from '../../Common/components/CustomSlider';
-import Rheostat from 'rheostat';
+import Slider from 'material-ui/Slider';
 
 import moment from 'moment';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -165,29 +163,33 @@ class Signup extends Component {
     );
   }
 
-  handleSliderUpdates = ({ lease_start, lease_end }, { values }) => {
-    lease_start.input.onChange(values[0]);
-    lease_end.input.onChange(values[1]);
+  handleSliderUpdates = (input, event, newValue) => {
+    input.onChange(newValue);
   }
 
-  renderDateSlider = ({ lease_start, lease_end }) => {
+  formatSliderValues = value => {
+    const date = new Date(value);
+    return `${moment(date).format('MMMM YYYY')}`;
+  }
+
+  renderDateSlider = ({ input }) => {
     const startDate = new Date(2015, 0, 1).valueOf();
     const endDate = new Date().valueOf();
 
-    const boundHandleSliderUpdates = this.handleSliderUpdates.bind(null, { lease_start, lease_end });
+    const boundHandleSliderUpdates = this.handleSliderUpdates.bind(null, input);
 
     return (
-      <div className="slider_container">
-        <CustomSlider
+      <div>
+        <Slider
           min={startDate}
           max={endDate}
+          step={1}
+          value={input.value}
           onChange={boundHandleSliderUpdates}
-          formatValue={(value) => {
-            const date = new Date(value);
-            return `${moment(date).format('MMMM YYYY')}`;
-          }}
-          values={[this.props.formValues.lease_start, this.props.formValues.lease_end]}
         />
+        <p>
+          <span>{this.formatSliderValues(input.value)}</span>
+        </p>
       </div>
     );
   }
@@ -318,13 +320,20 @@ class Signup extends Component {
                 </Step>
 
                 <Step>
-                  <StepLabel>Lease Details</StepLabel>
+                  <StepLabel>Span of Lease</StepLabel>
 
                   <StepContent className="step_content">
-                    <label style={{ fontSize: '1rem' }}>Span of lease</label>
+                    <label style={{ fontSize: '1rem' }}>Start Date</label>
 
-                    <Fields
-                      names={['lease_start', 'lease_end']}
+                    <Field
+                      name="lease_start"
+                      component={this.renderDateSlider}
+                    />
+
+                    <label style={{ fontSize: '1rem' }}>End Date</label>
+
+                    <Field
+                      name="lease_end"
                       component={this.renderDateSlider}
                     />
 
