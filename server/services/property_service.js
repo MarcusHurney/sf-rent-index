@@ -5,11 +5,11 @@ function createProperty({ property_data, user_id }) {
 
   const {
     street_address,
-    long_lat,
+    lat_lng,
     bedrooms,
     square_feet,
     total_rent,
-    room_rent,
+    utilities,
     roommates,
     lease_start,
     lease_end,
@@ -18,12 +18,12 @@ function createProperty({ property_data, user_id }) {
 
   const property = new Property({
     user: user_id,
-    long_lat,
+    lat_lng,
     street_address,
     bedrooms,
     square_feet,
     total_rent,
-    room_rent,
+    utilities,
     roommates,
     lease_start,
     lease_end,

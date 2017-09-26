@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field } from 'redux-form'
+import { Field, Fields, FieldArray } from 'redux-form';
 
 import {
   Step,
@@ -11,6 +11,7 @@ import {
 import Paper from 'material-ui/Paper';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -18,7 +19,9 @@ import CustomSlider from '../../Common/components/CustomSlider';
 import Rheostat from 'rheostat';
 
 import moment from 'moment';
-import PlacesAutocomplete, { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import _ from 'lodash';
+import axios from 'axios';
 
 class Signup extends Component {
   state = {
@@ -47,10 +50,45 @@ class Signup extends Component {
   }
 
   onSubmit = data => {
-    geocodeByAddress(this.props.formValues.address)
+    geocodeByAddress(data.street_address)
     .then(results => getLatLng(results[0]))
-    .then(latLng => console.log('Success', latLng))
-    .catch(error => console.error('Error', error))
+    .then(({ lat, lng }) => {
+      const {
+        email,
+        street_address,
+        bedrooms,
+        square_feet,
+        total_rent,
+        utilities,
+        roommates,
+        lease_start,
+        lease_end,
+        perks
+      } = data;
+
+      const REQUEST_BODY = {
+        email,
+        property_data: {
+          street_address,
+          lat_lng: [lat, lng],
+          bedrooms,
+          square_feet,
+          total_rent,
+          utilities,
+          roommates,
+          lease_start: new Date(lease_start),
+          lease_end: new Date(lease_end),
+          perks
+        }
+      };
+
+      let good = JSON.stringify(REQUEST_BODY);
+
+      axios.post('/api/submit_form', good)
+      .then(res => {
+        debugger;
+      })
+    });
   }
 
   renderSuggestion = ({ formattedSuggestion }) => {
@@ -127,23 +165,79 @@ class Signup extends Component {
     );
   }
 
-  renderSlider = ({ input, meta: { touched, error } }) => {
+  handleSliderUpdates = ({ lease_start, lease_end }, { values }) => {
+    lease_start.input.onChange(values[0]);
+    lease_end.input.onChange(values[1]);
+  }
+
+  renderDateSlider = ({ lease_start, lease_end }) => {
     const startDate = new Date(2015, 0, 1).valueOf();
     const endDate = new Date().valueOf();
-    console.log(input);
+
+    const boundHandleSliderUpdates = this.handleSliderUpdates.bind(null, { lease_start, lease_end });
+
     return (
       <div className="slider_container">
         <CustomSlider
           min={startDate}
           max={endDate}
+          onChange={boundHandleSliderUpdates}
           formatValue={(value) => {
             const date = new Date(value);
             return `${moment(date).format('MMMM YYYY')}`;
           }}
-          values={[startDate, endDate]}
+          values={[this.props.formValues.lease_start, this.props.formValues.lease_end]}
         />
       </div>
     );
+  }
+
+  renderPerks = ({ input, meta }) => {
+    const listOfPerks = [
+      {label: 'gym', value: 'gym'},
+      {label: 'security', value: 'security'},
+      {label: 'laundry', value: 'laundry'},
+      {label: 'pool', value: 'pool'},
+      {label: 'view', value: 'view'},
+      {label: 'remodeled', value: 'remodeled'}
+    ];
+
+    const { name, onChange } = input;
+    const { touched, error } = meta;
+    const inputValue = input.value;
+
+   const checkboxes = listOfPerks.map(({ label, value }, index) => {
+
+     const handleChange = (event) => {
+       const arr = [...inputValue];
+       if (event.target.checked) {
+         arr.push(value);
+       }
+       else {
+         arr.splice(arr.indexOf(value), 1);
+       }
+       return onChange(arr);
+     };
+
+     const checked = inputValue.includes(value);
+
+     return (
+       <Checkbox
+         key={`${index}-${label}`}
+         name={`${name}[${index}]`}
+         label={label}
+         value={value}
+         checked={checked}
+         onCheck={handleChange}
+       />
+     );
+   });
+
+   return (
+     <div>
+       {checkboxes}
+     </div>
+   );
   }
 
   renderStepActions = step => {
@@ -207,7 +301,7 @@ class Signup extends Component {
 
         <Paper zDepth={1} className="paper_container">
           <div className="stepper_container">
-            <form onSubmit={handleSubmit(this.onSubmit)}>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
               <Stepper activeStep={stepIndex} orientation="vertical">
 
                 <Step>
@@ -229,6 +323,11 @@ class Signup extends Component {
                   <StepContent className="step_content">
                     <label style={{ fontSize: '1rem' }}>Span of lease</label>
 
+                    <Fields
+                      names={['lease_start', 'lease_end']}
+                      component={this.renderDateSlider}
+                    />
+
                     {this.renderStepActions(1)}
                   </StepContent>
                 </Step>
@@ -238,16 +337,15 @@ class Signup extends Component {
 
                   <StepContent className="step_content">
 
-
                     <Field
-                      name="total_rent_cost"
+                      name="total_rent"
                       type="text"
                       component={this.renderInputField}
                       label="rent per month -- Ex. $3000"
                     />
 
                     <Field
-                      name="estimated_utilities_cost"
+                      name="utilities"
                       type="text"
                       component={this.renderInputField}
                       label="utilities per month (approx) -- Ex. $100"
@@ -260,33 +358,54 @@ class Signup extends Component {
                  <Step>
                    <StepLabel>Property Details</StepLabel>
 
-                   {/* Square Footage */}
-
                    <StepContent className="step_content">
                      <Field
-                       name="number_bedrooms"
+                       name="bedrooms"
                        component={this.renderSelectField}
-                       label="Number of bedrooms"
+                       label="bedrooms"
                      >
-                       <MenuItem value="1" primaryText="1" />
-                       <MenuItem value="2" primaryText="2" />
-                       <MenuItem value="3" primaryText="3" />
-                       <MenuItem value="4" primaryText="4" />
-                       <MenuItem value="5" primaryText="5" />
-                       <MenuItem value="5+" primaryText="5+" />
+                       <MenuItem value={0} primaryText="studio" />
+                       <MenuItem value={1} primaryText="1" />
+                       <MenuItem value={2} primaryText="2" />
+                       <MenuItem value={3} primaryText="3" />
+                       <MenuItem value={4} primaryText="4" />
+                       <MenuItem value={5} primaryText="5" />
+                       <MenuItem value={6} primaryText="6" />
                      </Field>
 
                      <Field
-                       name="number_roommates"
+                       name="roommates"
                        component={this.renderSelectField}
-                       label="Number of roommates"
+                       label="roommates"
                      >
-                       <MenuItem value="1" primaryText="1" />
-                       <MenuItem value="2" primaryText="2" />
-                       <MenuItem value="3" primaryText="3" />
-                       <MenuItem value="4" primaryText="4" />
-                       <MenuItem value="5" primaryText="5" />
-                       <MenuItem value="5+" primaryText="5+" />
+                       <MenuItem value={0} primaryText="none" />
+                       <MenuItem value={1} primaryText="1" />
+                       <MenuItem value={2} primaryText="2" />
+                       <MenuItem value={3} primaryText="3" />
+                       <MenuItem value={4} primaryText="4" />
+                       <MenuItem value={5} primaryText="5" />
+                       <MenuItem value={6} primaryText="6" />
+                     </Field>
+
+                     <Field
+                       name="square_feet"
+                       component={this.renderSelectField}
+                       label="square feet"
+                     >
+                       <MenuItem value={500} primaryText="500 or less" />
+                       <MenuItem value={750} primaryText="750" />
+                       <MenuItem value={1000} primaryText="1000" />
+                       <MenuItem value={1250} primaryText="1250" />
+                       <MenuItem value={1500} primaryText="1500" />
+                       <MenuItem value={1750} primaryText="1750" />
+                       <MenuItem value={2000} primaryText="2000" />
+                       <MenuItem value={2250} primaryText="2250" />
+                       <MenuItem value={2500} primaryText="2500" />
+                       <MenuItem value={2750} primaryText="2750" />
+                       <MenuItem value={3000} primaryText="3000" />
+                       <MenuItem value={3250} primaryText="3250" />
+                       <MenuItem value={3500} primaryText="3500" />
+                       <MenuItem value={4000} primaryText="4000" />
                      </Field>
                      {this.renderStepActions(3)}
                    </StepContent>
@@ -295,7 +414,13 @@ class Signup extends Component {
                <Step>
                  <StepLabel>Perks</StepLabel>
                  <StepContent className="step_content">
-                   <Field name="perks" type="text" component={this.renderInputField} label="gym, sauna, view" />
+
+                   <Field
+                    name="perks"
+                    label="Perks"
+                    component={this.renderPerks}
+                   />
+
                    {this.renderStepActions(4)}
                  </StepContent>
                </Step>
@@ -308,20 +433,6 @@ class Signup extends Component {
                  </StepContent>
                </Step>
              </Stepper>
-
-             {finished && (
-               <p style={{margin: '20px 0', textAlign: 'center'}}>
-                 <a
-                   href="#"
-                   onClick={(event) => {
-                     event.preventDefault();
-                     this.setState({stepIndex: 0, finished: false});
-                   }}
-                 >
-                   Click here
-                 </a> to reset the example.
-               </p>
-             )}
            </form>
          </div>
        </Paper>

@@ -22,17 +22,20 @@ import { signup } from '../../../state/Signup/mutations';
 import Signup from '../components/Signup';
 
 const validate = values => {
-  const errors = {}
+  const errors = {};
+
   const requiredFields = [
     'street_address',
+    'lease_start',
+    'lease_end',
     'bedrooms',
     'square_feet',
     'total_rent',
+    'utilities',
     'room_rent',
     'roommates',
-    'lease_start',
-    'lease_end',
-    'perks'
+    'perks',
+    'email'
   ]
   requiredFields.forEach(field => {
     if (!values[field]) {
@@ -57,6 +60,10 @@ const SignupForm = reduxForm({
 export default compose(
   connect((state) => {
     return {
+      initialValues: {
+        lease_start: new Date(2015, 0, 1).valueOf(),
+        lease_end: new Date().valueOf()
+      },
       formValues: getFormValues('signupForm')(state),
       formErrors: getFormSyncErrors('signupForm')(state),
       fields: getFormMeta('signupForm')(state),

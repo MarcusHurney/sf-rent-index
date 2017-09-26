@@ -6,10 +6,10 @@ module.exports = app => {
   app.post('/api/submit_form', (req, res) => {
     const { email, property_data } = req.body;
 
-
-    // first create a new User using signup from AuthService
     return AuthService.signupWithoutPassword({ email, req })
-    .then(user => PropertyService.createProperty({ property_data, user_id: user.id }))
+    .then(user => {
+      return PropertyService.sayHowdy(property_data, user.id);
+    })
     .then(property => res.send(property))
     .catch(error => {
       res.status(500).send("Could not create new account.")
