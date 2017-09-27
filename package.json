@@ -1,7 +1,7 @@
 {
   "name": "sf_rent_index",
   "version": "1.0.0",
-  "description": "Heroku -> MongoDB -> Node -> Express -> GraphQL -> React -> Apollo -> Redux -> Flexbox",
+  "description": "",
   "main": "index.js",
   "engines": {
     "node": "8.1.1",
