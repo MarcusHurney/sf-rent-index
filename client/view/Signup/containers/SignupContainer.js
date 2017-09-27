@@ -63,7 +63,7 @@ export default compose(
     return {
       initialValues: {
         lease_start: new Date(2015, 0, 1).valueOf(),
-        lease_end: new Date().valueOf()
+        lease_end: new Date(2018, 9, 1).valueOf()
       },
       formValues: getFormValues('signupForm')(state),
       formErrors: getFormSyncErrors('signupForm')(state),

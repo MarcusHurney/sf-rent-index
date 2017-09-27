@@ -124,6 +124,7 @@ class Signup extends Component {
     return (
       <div>
         <PlacesAutocomplete
+          id="address_autocomplete"
           inputProps={inputProps}
           classNames={cssClasses}
           options={config}
@@ -138,7 +139,7 @@ class Signup extends Component {
 
   renderInputField = ({ input, label, type, meta: { touched, error, warning } }) => {
     return (
-      <div>
+      <div className="input_container">
         <div>
           <input {...input} placeholder={label} type={type} />
           {
@@ -172,14 +173,18 @@ class Signup extends Component {
     return `${moment(date).format('MMMM YYYY')}`;
   }
 
-  renderDateSlider = ({ input }) => {
+  renderDateSlider = ({ input, label }) => {
     const startDate = new Date(2015, 0, 1).valueOf();
-    const endDate = new Date().valueOf();
+    const endDate = new Date(2018, 9, 1).valueOf();
 
     const boundHandleSliderUpdates = this.handleSliderUpdates.bind(null, input);
 
     return (
-      <div>
+      <div className="slider_wrapper">
+        <label style={{ fontSize: '1rem' }}>
+          {label}: <span className="slider_date">{this.formatSliderValues(input.value)}</span>
+        </label>
+
         <Slider
           min={startDate}
           max={endDate}
@@ -187,9 +192,6 @@ class Signup extends Component {
           value={input.value}
           onChange={boundHandleSliderUpdates}
         />
-        <p>
-          <span>{this.formatSliderValues(input.value)}</span>
-        </p>
       </div>
     );
   }
@@ -323,16 +325,15 @@ class Signup extends Component {
                   <StepLabel>Span of Lease</StepLabel>
 
                   <StepContent className="step_content">
-                    <label style={{ fontSize: '1rem' }}>Start Date</label>
 
                     <Field
+                      label="Start Date"
                       name="lease_start"
                       component={this.renderDateSlider}
                     />
 
-                    <label style={{ fontSize: '1rem' }}>End Date</label>
-
                     <Field
+                      label="End Date"
                       name="lease_end"
                       component={this.renderDateSlider}
                     />
@@ -347,17 +348,19 @@ class Signup extends Component {
                   <StepContent className="step_content">
 
                     <Field
+                      className="field_container"
                       name="total_rent"
                       type="text"
                       component={this.renderInputField}
-                      label="rent per month -- Ex. $3000"
+                      label="total rent -- Ex. $3000"
                     />
 
                     <Field
+                      className="field_container"
                       name="utilities"
                       type="text"
                       component={this.renderInputField}
-                      label="utilities per month (approx) -- Ex. $100"
+                      label="total utilities (approx) -- Ex. $100"
                     />
 
                     {this.renderStepActions(2)}

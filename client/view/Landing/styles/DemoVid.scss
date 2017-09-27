@@ -1,7 +1,6 @@
 .demo_container {
   min-height: 120vh;
   display: flex;
-  // flex: 7;
   flex-direction: column;
   justify-content: center;;
   align-items: center;
@@ -16,7 +15,6 @@
     font-family: 'Proxima Nova','Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 22px;
     font-weight: 275;
-    line-height: 52px;
     color: $primary_red;
   }
 
@@ -33,5 +31,12 @@
       border: none;
       padding-bottom: 5vh;
     }
+  }
+}
+
+@media (max-width: 750px) {
+  .demo_hero {
+    text-align: center;
+    font-size: 18px !important;
   }
 }

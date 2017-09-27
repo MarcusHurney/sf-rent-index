@@ -45,7 +45,7 @@ class LandingNavBar extends Component {
               <i id="logo_text">SF Rent Map</i>
             </Link>
 
-            <ul className="right collapsible popout" data-collapsible="accordion">
+            {/* <ul className="right collapsible popout" data-collapsible="accordion">
               <li>
                 <div className="collapsible-header primary_red">Login</div>
 
@@ -81,7 +81,7 @@ class LandingNavBar extends Component {
                   </form>
                 </div>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </nav>
       </div>

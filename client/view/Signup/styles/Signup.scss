@@ -12,6 +12,7 @@
     font-weight: 275;
     line-height: 52px;
     color: $primary_red;
+    padding-bottom: 5vh;
    }
 
   .paper_container {
@@ -29,8 +30,13 @@
       .step_content {
         width: 40vw;
 
-        .slider_container {
-          width: 100%;
+        .slider_wrapper {
+          padding-left: 10px;
+          padding-right: 10px;
+
+          .slider_date {
+            font-weight: bolder;
+          }
         }
 
         .input_error {
@@ -64,7 +70,29 @@
 
 @media (max-width: 750px) {
   .step_content {
-    width: 60vw !important;
-    font-size: 1rem !important;
+    width: 70vw !important;
   }
+
+  .signup_hero {
+    font-size: 15px;
+    text-align: center;
+   }
+
+   .paper_container {
+     width: 90vw !important;
+   }
+
+  //  #address_autocomplete::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  //   //  font-size: 1rem !important;
+  //   color: blue !important;
+  //  }
+  //  #address_autocomplete::-moz-placeholder { /* Firefox 19+ */
+  //    font-size: 1rem !important;
+  //  }
+  //  #address_autocomplete::-ms-input-placeholder { /* IE 10+ */
+  //    font-size: 1rem !important;
+  //  }
+  //  #address_autocomplete::-moz-placeholder { /* Firefox 18- */
+  //    font-size: 1rem !important;
+  //  }
 }
