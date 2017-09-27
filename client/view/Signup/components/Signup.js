@@ -66,25 +66,25 @@ class Signup extends Component {
 
       const REQUEST_BODY = {
         email,
-        property_data: {
-          street_address,
-          lat_lng: [lat, lng],
-          bedrooms,
-          square_feet,
-          total_rent,
-          utilities,
-          roommates,
-          lease_start: new Date(lease_start),
-          lease_end: new Date(lease_end),
-          perks
-        }
+        street_address,
+        lat_lng: [lat, lng],
+        bedrooms,
+        square_feet,
+        total_rent,
+        utilities,
+        roommates,
+        lease_start: lease_start.toString(),
+        lease_end: lease_end.toString(),
+        perks
       };
 
-      let good = JSON.stringify(REQUEST_BODY);
+      this.props.mutate({
+        variables: { ...REQUEST_BODY }
+      }).then(res => {
+        this.props.reset();
+        this.setState({ stepIndex: 0 });
+      }).catch(error => {
 
-      axios.post('/api/submit_form', good)
-      .then(res => {
-        debugger;
       })
     });
   }

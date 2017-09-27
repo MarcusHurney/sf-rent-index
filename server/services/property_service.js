@@ -16,6 +16,8 @@ function createProperty({ property_data, user_id }) {
     perks
   } = property_data;
 
+
+
   const property = new Property({
     user: user_id,
     lat_lng,
@@ -25,12 +27,12 @@ function createProperty({ property_data, user_id }) {
     total_rent,
     utilities,
     roommates,
-    lease_start,
-    lease_end,
+    lease_start: new Date(parseInt(lease_start)),
+    lease_end: new Date(parseInt(lease_end)),
     perks
   });
-
-  // if (!email || !street_address || !bedrooms || !square_feet || !roommates || !lease_start || !lease_end) { throw new Error('There is mising required data'); }
+  //
+  // // if (!email || !street_address || !bedrooms || !square_feet || !roommates || !lease_start || !lease_end) { throw new Error('There is mising required data'); }
   return property.save();
 }
 

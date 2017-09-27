@@ -1,9 +1,11 @@
 const graphql = require('graphql');
+const mongoose = require('mongoose');
 
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLID
+  GraphQLID,
+  GraphQLList
 } = graphql;
 
 const User = mongoose.model('user');
@@ -12,7 +14,7 @@ const PropertyType = require('./property_type');
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',
-  fields: {
+  fields: () => ({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
     properties: {
@@ -21,7 +23,7 @@ const UserType = new GraphQLObjectType({
         return User.findProperties(parentValue.id);
       }
     }
-  }
+  })
 });
 
 module.exports = UserType;

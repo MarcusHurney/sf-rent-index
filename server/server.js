@@ -41,7 +41,7 @@ mongoose.connection
 // the cookie and modifies the request object to indicate which user made the request
 // The cookie itself only contains the id of a session; more data about the session
 // is stored inside of MongoDB.
-app.use(bodyParser.json());
+
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -57,9 +57,6 @@ app.use(session({
 // assign the current user to the 'req.user' object.  See also servces/auth.js
 app.use(passport.initialize());
 app.use(passport.session());
-
-// require routes for our instance of express
-require('./routes/formRoutes')(app);
 
 app.use('/graphql', expressGraphQL({
   schema,

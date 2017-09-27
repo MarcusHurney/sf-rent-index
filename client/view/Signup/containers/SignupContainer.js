@@ -16,7 +16,7 @@ import {
 } from 'redux-form'
 
 // mutations
-import { signup } from '../../../state/Signup/mutations';
+import { signupWithoutPassword } from '../../../state/Signup/mutations';
 
 // components
 import Signup from '../components/Signup';
@@ -42,7 +42,7 @@ const validate = values => {
       errors[field] = 'Required'
     }
   })
-  
+
   if (
     values.email &&
     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
@@ -77,5 +77,5 @@ export default compose(
       submitFailed: hasSubmitFailed('signupForm')(state)
     };
   }),
-  graphql(signup)
+  graphql(signupWithoutPassword)
 )(SignupForm);
