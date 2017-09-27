@@ -42,7 +42,7 @@ class LandingNavBar extends Component {
           <div className="nav-wrapper">
             <Link to='/' className="brand-logo">
               <i id="nav_logo" className="material-icons">map</i>
-              <i id="logo_text">SF Rent Map</i>
+              <i id="logo_text">SF Rent Index</i>
             </Link>
 
             {/* <ul className="right collapsible popout" data-collapsible="accordion">
