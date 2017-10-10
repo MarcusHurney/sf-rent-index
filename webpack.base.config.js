@@ -3,16 +3,16 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const BUILD_DIR = path.join(__dirname, "build");
-const CLIENT_DIR = path.join(__dirname, "client");
+const BUILD_DIR = path.join(__dirname, 'build');
+const CLIENT_DIR = path.join(__dirname, 'client');
 
 module.exports = {
   entry: CLIENT_DIR,
   output: {
     path: BUILD_DIR,
-    filename: "bundle.js"
+    filename: 'bundle.js'
   },
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -23,16 +23,22 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader!sass-loader"
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader'
         })
       },
       {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-        loader: 'url-loader',
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        loader: 'file-loader',
         options: {
-          limit: 10000
+          publicPath: './',
+          outputPath: 'images/',
+          name: '[name].[ext]'
         }
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        loader: 'image-webpack-loader'
       }
     ]
   },

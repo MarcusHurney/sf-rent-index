@@ -137,11 +137,30 @@ class Signup extends Component {
     );
   }
 
+  renderCurrencyInput = ({ input, label, type, meta: { touched, error, warning } }) => {
+    return (
+      <div className="input_container">
+        <div>
+          <div className="currency_input_container">
+            <span className="currency_symbol">$</span>
+            <input {...input} placeholder={label} type={type} />
+          </div>
+
+          {
+            touched &&
+            ((error && <span className="input_error">{error}</span>) || (warning && <span>{warning}</span>))
+          }
+        </div>
+      </div>
+    );
+  }
+
   renderInputField = ({ input, label, type, meta: { touched, error, warning } }) => {
     return (
       <div className="input_container">
         <div>
           <input {...input} placeholder={label} type={type} />
+
           {
             touched &&
             ((error && <span className="input_error">{error}</span>) || (warning && <span>{warning}</span>))
@@ -325,7 +344,6 @@ class Signup extends Component {
                   <StepLabel>Span of Lease</StepLabel>
 
                   <StepContent className="step_content">
-
                     <Field
                       label="Start Date"
                       name="lease_start"
@@ -345,21 +363,19 @@ class Signup extends Component {
                 <Step>
                   <StepLabel>Monthly Cost</StepLabel>
 
-                  <StepContent className="step_content">
+                  <StepContent id="monthly_totals" className="step_content">
 
                     <Field
-                      className="field_container"
                       name="total_rent"
                       type="text"
-                      component={this.renderInputField}
+                      component={this.renderCurrencyInput}
                       label="total rent -- Ex. $3000"
                     />
 
                     <Field
-                      className="field_container"
                       name="utilities"
                       type="text"
-                      component={this.renderInputField}
+                      component={this.renderCurrencyInput}
                       label="total utilities (approx) -- Ex. $100"
                     />
 

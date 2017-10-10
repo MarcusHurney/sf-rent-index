@@ -37,18 +37,28 @@ const validate = values => {
     'perks',
     'email'
   ]
+  const testForNumber = (value, field) => {
+    if (value && isNaN(Number(value))) {
+      errors[field] = 'Must be a number';
+    } else {
+      errors[field] = undefined;
+    }
+  }
+
   requiredFields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required'
     }
-  })
+  });
 
-  if (
-    values.email &&
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-  ) {
-    errors.email = 'Invalid email address'
+  if (values.total_rent || values.utilities) {
+    return testForNumber(values[field], field);
   }
+
+  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+   
   return errors;
 }
 
@@ -62,7 +72,7 @@ export default compose(
   connect((state) => {
     return {
       initialValues: {
-        lease_start: new Date(2015, 0, 1).valueOf(),
+        lease_start: new Date(2017, 0, 1).valueOf(),
         lease_end: new Date(2018, 9, 1).valueOf()
       },
       formValues: getFormValues('signupForm')(state),

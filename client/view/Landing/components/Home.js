@@ -3,6 +3,7 @@ import LandingNavBarContainer from '../../Navigation/containers/LandingNavBarCon
 import SignupContainer from '../../Signup/containers/SignupContainer';
 import Banner from './Banner';
 import DemoVid from './DemoVid';
+import Testimonials from './Testimonials';
 
 class Home extends Component {
   render() {
@@ -11,6 +12,7 @@ class Home extends Component {
         <LandingNavBarContainer />
         <Banner />
         <DemoVid />
+        <Testimonials />
         <SignupContainer />
       </div>
     );
