@@ -1,6 +1,6 @@
 import React from 'react';
 import face1 from '../../../images/face1.jpg';
-import face2 from '../../../images/face2.jpg';
+import face2 from '../../../images/face2.png';
 import face3 from '../../../images/face3.png';
 
 const Testimonials = () => (
