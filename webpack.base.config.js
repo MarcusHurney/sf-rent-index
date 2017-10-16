@@ -10,7 +10,8 @@ module.exports = {
   entry: CLIENT_DIR,
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: './'
   },
   devtool: 'inline-source-map',
   module: {
@@ -29,15 +30,19 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        loader: 'file-loader',
-        options: {
-          outputPath: 'images/',
-          name: '[name].[ext]'
-        }
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        loader: 'image-webpack-loader'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 4000,
+              name: '[name].[ext]',
+              outputPath: 'images/'
+            }
+          },
+          {
+            loader: 'image-webpack-loader'
+          }
+        ]
       }
     ]
   },

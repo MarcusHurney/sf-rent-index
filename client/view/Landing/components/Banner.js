@@ -3,13 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Banner = () => (
   <div className="banner_container">
-    <div className="banner_img_container">
-    </div>
+    <div className="banner_img_container" />
 
     <div className="hero_container">
-      <div className="hero">
-        See Anonymous Rent Data Across San Francisco
-      </div>
+      <div className="hero">See Anonymous Rent Data Across San Francisco</div>
 
       <div className="sub_hero">
         Know what others are paying before signing your next lease
