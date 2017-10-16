@@ -41,10 +41,10 @@
     blockquote {
       font-family: 'Nunito-Regular';
       border-left: none;
-    }
 
-    .fa.fa-quote-left {
-      padding-right: 10px;
+      i {
+        color: $primary_red;
+      }
     }
 
     .testimonials-hr {

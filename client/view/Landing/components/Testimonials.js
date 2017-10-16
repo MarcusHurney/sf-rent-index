@@ -19,7 +19,7 @@ const Testimonials = () => (
             </div>
             <div className="col s8 m8 l8 quote-col">
               <blockquote>
-                <i className="fa fa-quote-left" />
+                <i className="small material-icons">format_quote</i>
                 SFRentIndex is like Glassdoor for rental info. I feel so blind
                 looking at rental prices accross the city without it. How do I
                 know if the listings I see are higher or lower than what people
@@ -38,7 +38,7 @@ const Testimonials = () => (
             </div>
             <div className="col s8 m8 l8 quote-col">
               <blockquote>
-                <i className="fa fa-quote-left" />
+                <i className="small material-icons">format_quote</i>
                 I used SFRentIndex to lock up my neighbor's rent in the inner
                 sunsent. I quickly realized my neighbors were paying $400 per
                 month less than me. I quickly brought this to my landlord's
@@ -57,7 +57,7 @@ const Testimonials = () => (
             </div>
             <div className="col s8 m8 l8 quote-col">
               <blockquote>
-                <i className="fa fa-quote-left" />
+                <i className="small material-icons">format_quote</i>
                 My landlord raised my rent and justified it as a general market
                 increase. He insisted that my neighbor's rent was also going up,
                 so I asked them what they were paying. My neighbors revealed
