@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import logo from '../../../images/logo.png';
 import { getCurrentUser } from '../../../state/Common/queries';
 
 class LandingNavBar extends Component {
@@ -7,7 +7,7 @@ class LandingNavBar extends Component {
     email: '',
     password: '',
     errors: []
-  }
+  };
 
   componentWillUpdate(nextProps) {
     if (!this.props.data.currentUser && nextProps.data.currentUser) {
@@ -17,33 +17,43 @@ class LandingNavBar extends Component {
   }
 
   handleLogin = ({ email, password }) => {
-    this.props.mutate({
-      variables: { email, password },
-      refetchQueries: [{ query: getCurrentUser }]
-    })
-    .then(res => this.setState({ errors: [] }))
-    .catch(res => {
-      // pulls error messages into an array of strings
-      const errors = res.graphQLErrors.map(error => error.message);
-      this.setState({ errors });
-    })
-  }
+    this.props
+      .mutate({
+        variables: { email, password },
+        refetchQueries: [{ query: getCurrentUser }]
+      })
+      .then(res => this.setState({ errors: [] }))
+      .catch(res => {
+        // pulls error messages into an array of strings
+        const errors = res.graphQLErrors.map(error => error.message);
+        this.setState({ errors });
+      });
+  };
 
   onSubmit = event => {
     event.preventDefault();
 
     this.handleLogin(this.state);
-  }
+  };
 
   render() {
     return (
       <div id="landing_navbar_container" className="navbar-fixed">
         <nav>
           <div className="nav-wrapper">
-            <Link to='/' className="brand-logo">
-              <i id="nav_logo" className="material-icons">map</i>
-              <i id="logo_text">SF Rent Index</i>
-            </Link>
+            <div className="logo_container">
+              <a className="brand-logo">
+                <img id="nav_logo" src={logo} />
+              </a>
+            </div>
+
+            {/* <a className="brand-logo">
+              <i id="nav_logo" className="material-icons">
+                map
+              </i>
+              <span id="logo_text">SFRentIndex</span>
+
+            </a> */}
 
             {/* <ul className="right collapsible popout" data-collapsible="accordion">
               <li>
@@ -82,6 +92,17 @@ class LandingNavBar extends Component {
                 </div>
               </li>
             </ul> */}
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li>
+                <a
+                  id="get_started"
+                  href="#register"
+                  className="primary_red waves-effect waves-light btn"
+                >
+                  Get Started
+                </a>
+              </li>
+            </ul>
           </div>
         </nav>
       </div>

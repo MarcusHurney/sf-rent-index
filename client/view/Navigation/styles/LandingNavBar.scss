@@ -1,17 +1,27 @@
 .navbar-fixed {
   nav {
-    background-color: #FDFDFD !important;
-    border-bottom: 1px solid $primary_red;
+    background-color: #fdfdfd !important;
+    // border-bottom: 1px solid $primary_red;
   }
 
-  #nav_logo {
-    padding-left: 1rem;
-    font-size: 4rem;
-    color: $primary_red;
+  .logo_container {
+    margin-left: 3rem;
+    #nav_logo {
+      width: 15vw;
+    }
   }
 
   #logo_text {
     color: $primary_red;
+  }
+
+  #nav-mobile {
+    padding-right: 3rem;
+  }
+
+  #get_started {
+    text-transform: none;
+    box-shadow: none;
   }
 
   #login_popout_body {

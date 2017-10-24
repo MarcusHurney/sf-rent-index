@@ -1,46 +1,67 @@
 .banner_container {
-  min-height: 80vh;
+  min-height: 100vh;
 
   .banner_img_container {
-    min-height: 50vh;
-    width: 100vw;
-    background-image: url('./images/banner.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 70%;
-  }
-
-  .hero_container {
-    min-height: 30vh;
-    width: 100vw;
-    border-bottom: 1px solid $primary_red;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    min-height: 60vh;
+    width: 100vw;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
+      url('./images/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 70%;
+    padding-left: 10vw;
 
     .hero {
-      font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial,
-        sans-serif;
-      font-size: 35px;
-      font-weight: 300;
-      line-height: 45px;
-      color: $primary_red;
-      padding-top: 2vh;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 50px;
+      font-weight: 600;
+      line-height: 64px;
+      color: #fcfcfc;
     }
 
     .sub_hero {
       font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial,
         sans-serif;
-      font-size: 18px;
+      font-size: 25px;
       font-weight: 275;
       line-height: 45px;
-      color: $primary_red;
-      padding-top: 2vh;
+      color: #fcfcfc;
+      padding-top: 4vh;
     }
 
     .call_to_action {
-      padding-top: 2vh;
+      padding-top: 8vh;
+
+      a {
+        text-transform: none;
+      }
+    }
+  }
+
+  .mission_container {
+    min-height: 40vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 5vh;
+    padding-left: 10vw;
+
+    .mission_header {
+      color: $headers;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 0;
+      // line-height: 32px;
+    }
+
+    .mission_content {
+      color: #545760;
     }
   }
 }

@@ -1,7 +1,9 @@
-$main-font-color: #2D333A;
-$primary_background_color: #FCFCFC;
-$primary_red: #EE6E73;
-$error_red: #F44336;
+$headers: #343434;
+$main-font-color: #2d333a;
+$primary_background_color: white;
+$teal_primary: #8cd3d8;
+$primary_red: #ff584c;
+$error_red: #f44336;
 
 html {
   height: 100vh;
@@ -12,6 +14,7 @@ body {
   padding: 0;
   background-color: $primary_background_color;
   min-height: 100vh;
+  font-family: Helvetica;
 
   a {
     text-decoration: none;
@@ -27,6 +30,7 @@ body {
     @import './view/Login/styles/index.scss';
     @import './view/Common/styles/index.scss';
     @import './view/Signup/styles/index.scss';
+    @import './view/Map/styles/index.scss';
   }
 
   #root > div {
