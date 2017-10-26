@@ -1,67 +1,47 @@
-.banner_container {
-  min-height: 100vh;
+.banner_img_container {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 60vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
+    url('./images/banner.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 70%;
+  padding-left: 10vw;
 
-  .banner_img_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 60vh;
-    width: 100vw;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)),
-      url('./images/banner.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 70%;
-    padding-left: 10vw;
-
-    .hero {
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 50px;
-      font-weight: 600;
-      line-height: 64px;
-      color: #fcfcfc;
-    }
-
-    .sub_hero {
-      font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial,
-        sans-serif;
-      font-size: 25px;
-      font-weight: 275;
-      line-height: 45px;
-      color: #fcfcfc;
-      padding-top: 4vh;
-    }
-
-    .call_to_action {
-      padding-top: 8vh;
-
-      a {
-        text-transform: none;
-      }
-    }
+  .hero {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 64px;
+    color: #fcfcfc;
   }
 
-  .mission_container {
-    min-height: 40vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-top: 5vh;
-    padding-left: 10vw;
+  .sub_hero {
+    font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 25px;
+    font-weight: 275;
+    line-height: 45px;
+    color: #fcfcfc;
+    padding-top: 4vh;
+  }
 
-    .mission_header {
-      color: $headers;
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 0;
-      // line-height: 32px;
-    }
+  .call_to_action {
+    padding-top: 8vh;
 
-    .mission_content {
-      color: #545760;
+    button {
+      border: none;
+      background-color: $primary_red;
+      color: white;
+      &:hover {
+        background-color: lighten($primary_red, 2%);
+        transition-timing-function: ease;
+        transition: 0.25s;
+      }
     }
   }
 }

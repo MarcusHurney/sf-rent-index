@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+
 import LandingNavBarContainer from '../../Navigation/containers/LandingNavBarContainer';
 import SignupContainer from '../../Signup/containers/SignupContainer';
+
 import Banner from './Banner';
+import Mission from './Mission';
 import DemoMap from './DemoMap';
 import Testimonials from './Testimonials';
 
@@ -11,6 +14,7 @@ class Home extends Component {
       <div className="home_container">
         <LandingNavBarContainer />
         <Banner />
+        <Mission />
         <DemoMap
           initialPosition={{
             lat: 37.7749295,

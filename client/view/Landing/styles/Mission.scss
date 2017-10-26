@@ -1,0 +1,26 @@
+.mission_container {
+  background-color: white;
+  min-height: 80vh;
+  width: 100vw;
+
+  .mission_header {
+    padding-top: 3rem;
+    color: $primary_red;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .columns_container {
+    padding: 3rem;
+    .column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .mission_content {
+      color: #545760;
+    }
+  }
+}

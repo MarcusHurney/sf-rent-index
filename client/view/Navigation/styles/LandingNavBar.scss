@@ -1,50 +1,73 @@
-.navbar-fixed {
-  nav {
-    background-color: #fdfdfd !important;
-    // border-bottom: 1px solid $primary_red;
-  }
+// .navbar-fixed {
+//   nav {
+//     background-color: #fdfdfd !important;
+//     // border-bottom: 1px solid $primary_red;
+//   }
+//
+//   .logo_container {
+//     margin-top: 5px;
+//     margin-left: 3rem;
+//     #nav_logo {
+//       width: 15vw;
+//     }
+//   }
+//
+//   #logo_text {
+//     color: $primary_red;
+//   }
+//
+//   #nav-mobile {
+//     padding-right: 3rem;
+//   }
+//
+//   #get_started {
+//     text-transform: none;
+//     box-shadow: none;
+//   }
+//
+//   #login_popout_body {
+//     min-width: 300px;
+//     background-color: $primary_background_color;
+//
+//     input {
+//       color: $main-font-color;
+//     }
+//
+//     .errors {
+//       color: $error_red;
+//
+//       p {
+//         margin-top: 0;
+//       }
+//     }
+//   }
+// }
+//
+// @media (max-width: 750px) {
+//   #nav_logo {
+//     display: none;
+//   }
+// }
 
-  .logo_container {
-    margin-top: 5px;
-    margin-left: 3rem;
-    #nav_logo {
-      width: 15vw;
-    }
-  }
+nav {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
-  #logo_text {
+  #nav_btn {
     color: $primary_red;
-  }
-
-  #nav-mobile {
-    padding-right: 3rem;
-  }
-
-  #get_started {
-    text-transform: none;
-    box-shadow: none;
-  }
-
-  #login_popout_body {
-    min-width: 300px;
-    background-color: $primary_background_color;
-
-    input {
-      color: $main-font-color;
+    border-color: $primary_red;
+    transition-timing-function: ease;
+    &:hover {
+      transition-timing-function: ease;
+      transition: 0.25s;
+      color: white;
+      background-color: $primary_red;
     }
-
-    .errors {
-      color: $error_red;
-
-      p {
-        margin-top: 0;
-      }
-    }
-  }
-}
-
-@media (max-width: 750px) {
-  #nav_logo {
-    display: none;
   }
 }
