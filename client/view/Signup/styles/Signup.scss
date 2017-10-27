@@ -7,13 +7,13 @@
   padding-top: 5vh;
 
   .signup_hero {
-    font-family: 'Proxima Nova','Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 22px;
     font-weight: 275;
     line-height: 52px;
     color: $primary_red;
     padding-bottom: 5vh;
-   }
+  }
 
   .paper_container {
     width: 70vw;
@@ -60,7 +60,7 @@
         }
 
         textarea {
-          color: $main-font-color;
+          color: $main_font_color;
         }
 
         .my-autocomplete-container {
@@ -90,9 +90,9 @@
   .signup_hero {
     font-size: 15px;
     text-align: center;
-   }
+  }
 
-   .paper_container {
-     width: 90vw !important;
-   }
+  .paper_container {
+    width: 90vw !important;
+  }
 }
