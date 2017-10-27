@@ -127,7 +127,7 @@ class LandingNavBar extends Component {
           <div className="navbar-end">
             <div className="navbar-item">
               <button id="nav_btn" className="button is-outlined">
-                Get Started
+                Contribute
               </button>
             </div>
           </div>

@@ -34,6 +34,20 @@
         margin-top: 2rem;
       }
     }
+
+    .column:not(:target):not(:hover) {
+      .mission_content {
+        visibility: collapse;
+      }
+    }
+
+    .column:hover {
+      flex-direction: column-reverse;
+      figure {
+        visibility: collapse;
+      }
+    }
+
     .mission_content {
       padding-left: 1rem;
       color: $main_font_color;

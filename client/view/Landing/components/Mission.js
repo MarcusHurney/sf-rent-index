@@ -12,9 +12,12 @@ const Mission = () => (
 
     <div className="columns_container columns">
       <div className="column is-one-third">
+        <h2>Leverage</h2>
+
         <figure id="keys" className="image is-128x128">
           <img src={keys} alt="orange map icon" />
         </figure>
+
         <p className="mission_content">
           The rental market in San Francisco is heavily weighted in favor of
           property owners. Prospective tenants are expected to silently accept
@@ -23,9 +26,12 @@ const Mission = () => (
       </div>
 
       <div className="column">
+        <h2>Insight</h2>
+
         <figure id="money_house" className="image is-128x128">
           <img src={money_house} alt="orange map icon" />
         </figure>
+
         <p className="mission_content">
           Without knowing what your neighbors are actually paying, the realator
           has complete leverage over the tenant. Rental prices will always go
@@ -35,9 +41,12 @@ const Mission = () => (
       </div>
 
       <div className="column">
+        <h2>Transparency</h2>
+
         <figure id="navy_map" className="image is-128x128">
           <img src={navy_map} alt="orange map icon" />
         </figure>
+
         <p className="mission_content">
           SF Rent Index is an attempt to give the rental market more price
           transparency without sacraficing the anonimity of its users. Everyone

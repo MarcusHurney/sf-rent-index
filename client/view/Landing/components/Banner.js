@@ -13,7 +13,7 @@ const Banner = () => (
 
       <div className="call_to_action">
         <button className="button is-medium">
-          <i className="material-icons left">rate_review</i>Get Started
+          <i className="material-icons left">rate_review</i>Contribute
         </button>
       </div>
     </div>
