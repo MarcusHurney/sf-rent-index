@@ -4,15 +4,35 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 5vh;
 
-  .signup_hero {
-    font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 22px;
-    font-weight: 275;
-    line-height: 52px;
-    color: $primary_red;
-    padding-bottom: 5vh;
+  .header_container {
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+
+    h2 {
+      text-align: center;
+      color: $primary_red;
+      font-size: 34px;
+      line-height: 1.2;
+      font-weight: 400;
+      padding-bottom: 1rem;
+    }
+
+    .under-heading {
+      text-align: center;
+      font-family: Helvetica, serif;
+      color: $main_font_color;
+      text-transform: uppercase;
+      font-size: 18px;
+      line-height: 1.5;
+      letter-spacing: 4px;
+      font-weight: 400;
+      padding-bottom: 5rem;
+    }
   }
 
   .paper_container {
@@ -29,6 +49,33 @@
 
       .step_content {
         width: 40vw;
+
+        .next_btn {
+          border: none;
+          min-width: 88px;
+          background-color: $secondary_navy;
+          color: #fff;
+          transition-timing-function: ease;
+          margin-right: 12px;
+
+          &:hover {
+            background-color: lighten($secondary_navy, 10%);
+            transition-timing-function: ease;
+            transition: 0.25s;
+          }
+        }
+
+        .back_btn {
+          color: $primary_red;
+          border-color: $primary_red;
+          transition-timing-function: ease;
+          &:hover {
+            transition-timing-function: ease;
+            transition: 0.25s;
+            color: white;
+            background-color: $primary_red;
+          }
+        }
 
         .slider_wrapper {
           padding-left: 15px;
@@ -69,7 +116,7 @@
           .address_suggestion {
             background-color: #ffffff;
             padding: 10px;
-            color: #555555;
+            color: #555555 !important;
             cursor: pointer;
           }
 

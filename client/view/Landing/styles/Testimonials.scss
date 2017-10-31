@@ -1,60 +1,65 @@
 .testimonials_container {
-  height: 100vh;
+  min-height: 30vh;
 
   .section-testimonials {
-    padding-top: 5rem;
-    padding-left: 7rem;
-    padding-right: 7rem;
+    padding-top: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
     h2 {
-      color: $primary_red;
       text-align: center;
+      color: $primary_red;
+      font-size: 34px;
+      line-height: 1.2;
+      font-weight: 400;
+      padding-bottom: 1rem;
     }
 
-    .heading,
     .under-heading {
-      color: $primary_red;
       text-align: center;
+      font-family: Helvetica, serif;
+      color: #123466;
+      text-transform: uppercase;
+      font-size: 18px;
+      line-height: 1.5;
+      letter-spacing: 4px;
+      font-weight: 400;
     }
 
     .testimonial {
       padding-top: 5rem;
       padding-bottom: 5rem;
-    }
 
-    .mario-image,
-    .monice-image,
-    .monka-image {
-      width: 135px;
-      height: auto;
-      border-radius: 50%;
-      transition: 0.5s;
-    }
-
-    .mario-image:hover,
-    .monice-image:hover,
-    .monka-image:hover {
-      transition: 0.5s;
-      transform: scale(0.95);
-    }
-
-    blockquote {
-      font-family: 'Nunito-Regular';
-      border-left: none;
-
-      i {
-        color: $primary_red;
+      .mario-image,
+      .monice-image,
+      .monka-image {
+        width: 135px;
+        height: auto;
+        border-radius: 50%;
       }
-    }
 
-    .testimonials-hr {
-      border-top: 1px solid $primary_red;
-      width: 260px;
-      background-color: $primary_red;
-    }
+      .quote-col {
+        padding-left: 1rem !important;
 
-    .testimonial .quote-col {
-      padding-left: 3rem;
+        blockquote {
+          font-family: 'Nunito-Regular';
+          border-left: none;
+          color: #545760;
+          i {
+            color: $primary_red;
+          }
+        }
+
+        cite {
+          color: $headers !important;
+        }
+      }
+
+      .testimonials-hr {
+        border-top: 1px solid $primary_red;
+        width: 100%;
+        background-color: $primary_red;
+      }
     }
   }
 }
@@ -67,8 +72,13 @@
       padding-left: 1rem !important;
       padding-right: 1rem !important;
 
-      .testimonials-hr {
-        width: 150px !important;
+      .under-heading {
+        padding-bottom: 2rem;
+      }
+
+      .testimonial {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
       }
     }
   }

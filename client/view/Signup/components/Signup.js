@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Field, Fields, FieldArray } from 'redux-form';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 import { Step, Stepper, StepLabel, StepContent } from 'material-ui/Stepper';
 
 import Paper from 'material-ui/Paper';
@@ -18,6 +21,34 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import _ from 'lodash';
 import axios from 'axios';
+
+const muiTheme = getMuiTheme({
+  fontFamily: 'Helvetica',
+  palette: {
+    primary1Color: '#123466',
+    primary2Color: '#123466',
+    primary3Color: '#123466',
+    textColor: '#fff',
+    canvasColor: '#fff',
+    borderColor: '#343434',
+    shadowColor: '#343434'
+  },
+  checkbox: {
+    boxColor: '#123466',
+    checkedColor: '#ff584c',
+    requiredColor: 'red',
+    disabledColor: 'red',
+    labelColor: '#545760',
+    labelDisabledColor: 'red'
+  },
+  flatButton: {
+    color: 'transparent',
+    textColor: '#545760'
+  },
+  menuItem: {
+    hoverColor: '#E8E8E8'
+  }
+});
 
 class Signup extends Component {
   state = {
@@ -280,41 +311,39 @@ class Signup extends Component {
     if (stepIndex === 5) {
       return (
         <div style={{ margin: '12px 0' }}>
-          <RaisedButton
+          <button
+            className="button is-outlined next_btn"
             type="submit"
-            label={'Submit'}
-            disableTouchRipple={true}
-            disableFocusRipple={true}
-            primary={true}
-            style={{ marginRight: 12 }}
-          />
-          <FlatButton
-            label="Back"
-            disableTouchRipple={true}
-            disableFocusRipple={true}
+            onClick={this.handleNext}
+          >
+            Submit
+          </button>
+          <button
+            className="button is-outlined back_btn"
             onClick={this.handlePrev}
-          />
+          >
+            Back
+          </button>
         </div>
       );
     } else {
       return (
         <div style={{ margin: '12px 0' }}>
-          <RaisedButton
-            label="Next"
-            disableTouchRipple={true}
-            disableFocusRipple={true}
-            primary={true}
+          <button
+            className="button is-outlined next_btn"
+            type="button"
             onClick={this.handleNext}
-            style={{ marginRight: 12 }}
-          />
+          >
+            Next
+          </button>
+
           {step > 0 && (
-            <FlatButton
-              label="Back"
-              disabled={stepIndex === 0}
-              disableTouchRipple={true}
-              disableFocusRipple={true}
+            <button
+              className="button is-outlined back_btn"
               onClick={this.handlePrev}
-            />
+            >
+              Back
+            </button>
           )}
         </div>
       );
@@ -327,156 +356,276 @@ class Signup extends Component {
 
     return (
       <div className="signup_container">
-        <div className="signup_hero">
-          Enter your rent data anonymously. Give leverage back to the renter.
+        <div className="header_container">
+          <h2>Contribute Your Rent Data Anonymously</h2>
+          <h3 className="under-heading">
+            Help bring transparency to San Francisco's rental market
+          </h3>
         </div>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <Paper zDepth={1} className="paper_container">
+            <div className="stepper_container">
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <Stepper
+                  id="stepper"
+                  activeStep={stepIndex}
+                  orientation="vertical"
+                >
+                  <Step>
+                    <StepLabel>Street Address</StepLabel>
 
-        <Paper zDepth={1} className="paper_container">
-          <div className="stepper_container">
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-              <Stepper activeStep={stepIndex} orientation="vertical">
-                <Step>
-                  <StepLabel>Street Address</StepLabel>
+                    <StepContent className="step_content">
+                      <Field
+                        name="street_address"
+                        component={this.renderAddressInput}
+                      />
 
-                  <StepContent className="step_content">
-                    <Field
-                      name="street_address"
-                      component={this.renderAddressInput}
-                    />
+                      {this.renderStepActions(0)}
+                    </StepContent>
+                  </Step>
 
-                    {this.renderStepActions(0)}
-                  </StepContent>
-                </Step>
+                  <Step>
+                    <StepLabel>Span of Lease</StepLabel>
 
-                <Step>
-                  <StepLabel>Span of Lease</StepLabel>
+                    <StepContent className="step_content">
+                      <Field
+                        label="Start Date"
+                        name="lease_start"
+                        component={this.renderDateSlider}
+                      />
 
-                  <StepContent className="step_content">
-                    <Field
-                      label="Start Date"
-                      name="lease_start"
-                      component={this.renderDateSlider}
-                    />
+                      <Field
+                        label="End Date"
+                        name="lease_end"
+                        component={this.renderDateSlider}
+                      />
 
-                    <Field
-                      label="End Date"
-                      name="lease_end"
-                      component={this.renderDateSlider}
-                    />
+                      {this.renderStepActions(1)}
+                    </StepContent>
+                  </Step>
 
-                    {this.renderStepActions(1)}
-                  </StepContent>
-                </Step>
+                  <Step>
+                    <StepLabel>Monthly Cost</StepLabel>
 
-                <Step>
-                  <StepLabel>Monthly Cost</StepLabel>
+                    <StepContent id="monthly_totals" className="step_content">
+                      <Field
+                        name="total_rent"
+                        type="text"
+                        component={this.renderCurrencyInput}
+                        label="total rent -- Ex. $3000"
+                      />
 
-                  <StepContent id="monthly_totals" className="step_content">
-                    <Field
-                      name="total_rent"
-                      type="text"
-                      component={this.renderCurrencyInput}
-                      label="total rent -- Ex. $3000"
-                    />
+                      <Field
+                        name="utilities"
+                        type="text"
+                        component={this.renderCurrencyInput}
+                        label="total utilities (approx) -- Ex. $100"
+                      />
 
-                    <Field
-                      name="utilities"
-                      type="text"
-                      component={this.renderCurrencyInput}
-                      label="total utilities (approx) -- Ex. $100"
-                    />
+                      {this.renderStepActions(2)}
+                    </StepContent>
+                  </Step>
 
-                    {this.renderStepActions(2)}
-                  </StepContent>
-                </Step>
+                  <Step>
+                    <StepLabel>Property Details</StepLabel>
 
-                <Step>
-                  <StepLabel>Property Details</StepLabel>
+                    <StepContent className="step_content">
+                      <Field
+                        name="bedrooms"
+                        component={this.renderSelectField}
+                        label="bedrooms"
+                      >
+                        <MenuItem
+                          value={0}
+                          primaryText="studio"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={1}
+                          primaryText="1"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={2}
+                          primaryText="2"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={3}
+                          primaryText="3"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={4}
+                          primaryText="4"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={5}
+                          primaryText="5"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={6}
+                          primaryText="6"
+                          style={{ color: '#545760' }}
+                        />
+                      </Field>
 
-                  <StepContent className="step_content">
-                    <Field
-                      name="bedrooms"
-                      component={this.renderSelectField}
-                      label="bedrooms"
-                    >
-                      <MenuItem value={0} primaryText="studio" />
-                      <MenuItem value={1} primaryText="1" />
-                      <MenuItem value={2} primaryText="2" />
-                      <MenuItem value={3} primaryText="3" />
-                      <MenuItem value={4} primaryText="4" />
-                      <MenuItem value={5} primaryText="5" />
-                      <MenuItem value={6} primaryText="6" />
-                    </Field>
+                      <Field
+                        name="roommates"
+                        component={this.renderSelectField}
+                        label="roommates"
+                      >
+                        <MenuItem
+                          value={0}
+                          primaryText="none"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={1}
+                          primaryText="1"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={2}
+                          primaryText="2"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={3}
+                          primaryText="3"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={4}
+                          primaryText="4"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={5}
+                          primaryText="5"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={6}
+                          primaryText="6"
+                          style={{ color: '#545760' }}
+                        />
+                      </Field>
 
-                    <Field
-                      name="roommates"
-                      component={this.renderSelectField}
-                      label="roommates"
-                    >
-                      <MenuItem value={0} primaryText="none" />
-                      <MenuItem value={1} primaryText="1" />
-                      <MenuItem value={2} primaryText="2" />
-                      <MenuItem value={3} primaryText="3" />
-                      <MenuItem value={4} primaryText="4" />
-                      <MenuItem value={5} primaryText="5" />
-                      <MenuItem value={6} primaryText="6" />
-                    </Field>
+                      <Field
+                        name="square_feet"
+                        component={this.renderSelectField}
+                        label="square feet"
+                      >
+                        <MenuItem
+                          value={500}
+                          primaryText="500 or less"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={750}
+                          primaryText="750"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={1000}
+                          primaryText="1000"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={1250}
+                          primaryText="1250"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={1500}
+                          primaryText="1500"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={1750}
+                          primaryText="1750"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={2000}
+                          primaryText="2000"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={2250}
+                          primaryText="2250"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={2500}
+                          primaryText="2500"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={2750}
+                          primaryText="2750"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={3000}
+                          primaryText="3000"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={3250}
+                          primaryText="3250"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={3500}
+                          primaryText="3500"
+                          style={{ color: '#545760' }}
+                        />
+                        <MenuItem
+                          value={4000}
+                          primaryText="4000"
+                          style={{ color: '#545760' }}
+                        />
+                      </Field>
+                      {this.renderStepActions(3)}
+                    </StepContent>
+                  </Step>
 
-                    <Field
-                      name="square_feet"
-                      component={this.renderSelectField}
-                      label="square feet"
-                    >
-                      <MenuItem value={500} primaryText="500 or less" />
-                      <MenuItem value={750} primaryText="750" />
-                      <MenuItem value={1000} primaryText="1000" />
-                      <MenuItem value={1250} primaryText="1250" />
-                      <MenuItem value={1500} primaryText="1500" />
-                      <MenuItem value={1750} primaryText="1750" />
-                      <MenuItem value={2000} primaryText="2000" />
-                      <MenuItem value={2250} primaryText="2250" />
-                      <MenuItem value={2500} primaryText="2500" />
-                      <MenuItem value={2750} primaryText="2750" />
-                      <MenuItem value={3000} primaryText="3000" />
-                      <MenuItem value={3250} primaryText="3250" />
-                      <MenuItem value={3500} primaryText="3500" />
-                      <MenuItem value={4000} primaryText="4000" />
-                    </Field>
-                    {this.renderStepActions(3)}
-                  </StepContent>
-                </Step>
+                  <Step>
+                    <StepLabel>Perks</StepLabel>
+                    <StepContent className="step_content">
+                      <Field
+                        name="perks"
+                        label="Perks"
+                        component={this.renderPerks}
+                      />
 
-                <Step>
-                  <StepLabel>Perks</StepLabel>
-                  <StepContent className="step_content">
-                    <Field
-                      name="perks"
-                      label="Perks"
-                      component={this.renderPerks}
-                    />
+                      {this.renderStepActions(4)}
+                    </StepContent>
+                  </Step>
 
-                    {this.renderStepActions(4)}
-                  </StepContent>
-                </Step>
-
-                <Step>
-                  <StepLabel>
-                    How should we contact you when the data's in?
-                  </StepLabel>
-                  <StepContent className="step_content">
-                    <Field
-                      name="email"
-                      type="email"
-                      component={this.renderInputField}
-                      label="Email"
-                    />
-                    {this.renderStepActions(5)}
-                  </StepContent>
-                </Step>
-              </Stepper>
-            </form>
-          </div>
-        </Paper>
+                  <Step>
+                    <StepLabel>
+                      How should we contact you when the data's in?
+                    </StepLabel>
+                    <StepContent className="step_content">
+                      <Field
+                        name="email"
+                        type="email"
+                        component={this.renderInputField}
+                        label="Email"
+                      />
+                      {this.renderStepActions(5)}
+                    </StepContent>
+                  </Step>
+                </Stepper>
+              </form>
+            </div>
+          </Paper>
+        </MuiThemeProvider>
       </div>
     );
   }

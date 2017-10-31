@@ -6,10 +6,10 @@ import face3 from '../../../images/face3.jpg';
 const Testimonials = () => (
   <section className="testimonials_container">
     <div className="section-testimonials">
-      <h2 className="demo_hero">Testimonials</h2>
-      <p className="lead under-heading">
+      <h2>Testimonials</h2>
+      <h3 className="under-heading">
         Read what others have to say about SF Rent Index
-      </p>
+      </h3>
 
       <div className="row">
         <div className="col s12 l4">
@@ -60,11 +60,10 @@ const Testimonials = () => (
                 <i className="small material-icons">format_quote</i>
                 My landlord raised my rent and justified it as a general market
                 increase. He insisted that my neighbor's rent was also going up,
-                so I asked them what they were paying. My neighbors revealed
-                that their rent was in fact{' '}
-                <span style={{ fontStyle: 'italic' }}>decreasing</span>. That
-                was the inspiration behind SFRentIndex - to empower renters and
-                landlords with accurate rent information.
+                so I asked them what they were paying. It turns out their rent
+                was <span style={{ fontStyle: 'italic' }}>decreasing</span>.
+                That was the inspiration behind SFRentIndex - to empower renters
+                and landlords with accurate rent information.
               </blockquote>
               <hr className="testimonials-hr" />
               <cite>&#8212; Varun Barhtia</cite>
