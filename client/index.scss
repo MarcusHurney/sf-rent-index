@@ -11,11 +11,12 @@ html {
 }
 
 body {
+  -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
   background-color: $primary_background_color;
   min-height: 100vh;
-  font-family: Helvetica;
+  font-family: 'Lucida Grande';
 
   a {
     text-decoration: none;

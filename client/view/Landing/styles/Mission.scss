@@ -1,107 +1,131 @@
-.mission_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  background-color: white;
-  min-height: 30vh;
-  width: 80vw;
-  padding-bottom: 4rem;
+.mission_image_container {
+  width: 100vw;
+  min-height: 130vh;
+  background-image: url('./images/orange_map_badge.svg'),
+    url('./images/layers1.svg'), url('./images/light_gry_network.svg');
+  background-position: 100px 180px, 15px 95px, 100% 95%;
+  background-size: 75px 75px, 275px 275px, 300px 300px;
+  background-repeat: no-repeat;
 
-  .header_container {
+  .mission_container {
+    background-color: transparent !important;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: white;
+    min-height: 30vh;
+    width: 80vw;
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
 
-    .mission_header {
-      padding-top: 4rem;
-      padding-bottom: 3rem;
-      text-align: center;
-      color: $primary_red;
-      font-size: 34px;
-      line-height: 1.2;
-      font-weight: 600;
-      letter-spacing: 3px;
-    }
-  }
-
-  .columns_container {
-    .card {
-      min-height: 334px;
-      max-height: 375px;
-      padding-top: 1rem;
+    .header_container {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
 
-      .media-content {
-        p {
-          color: #ff5745;
-          font-family: Helvetica, serif;
-          text-transform: uppercase;
-          font-size: 18px;
-          line-height: 1.5;
-          letter-spacing: 3px;
-          font-weight: 400;
-        }
+      .mission_header {
+        padding-top: 4rem;
+        font-family: Helvetica, serif;
+        color: #ff5745;
+        font-size: 20px;
+        line-height: 27px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .bold_header {
+        font-size: 50px;
+        line-height: 60px;
+        margin-top: 35px;
+        padding-bottom: 20px;
+        color: $secondary_navy;
+        text-align: center;
+      }
+
+      .sub_bold_header {
+        font-family: CircularPro Book, Helvetica, serif;
+        color: #545760;
+        font-size: 18px;
+        line-height: 22px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        font-weight: 600;
       }
     }
 
-    // .column:not(:target):not(:hover) {
-    //   .mission_content {
-    //     visibility: collapse;
-    //   }
-    // }
-    //
-    // .column:hover {
-    //   flex-direction: column-reverse;
-    //   figure {
-    //     visibility: collapse;
-    //   }
-    // }
+    .columns_container {
+      margin-top: 1rem;
 
-    .mission_content {
-      padding-left: 1rem;
-      color: $main_font_color;
+      .card {
+        padding-top: 1rem;
+        min-height: 356px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .media-content {
+          p {
+            color: #ff5745;
+            font-family: Helvetica, serif;
+            text-transform: uppercase;
+            font-size: 18px;
+            line-height: 1.5;
+            letter-spacing: 3px;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .card:hover {
+        box-shadow: 0 0px 0px #ff5745, 0 0 0 1px #ff5745;
+      }
+
+      .mission_content {
+        padding-left: 1rem;
+        color: $main_font_color;
+      }
     }
   }
-}
 
-@media only screen and (max-width: 768px) {
-  .mission_header {
-    font-size: 28px !important;
+  @media only screen and (max-width: 768px) {
+    .mission_header {
+      font-size: 28px !important;
+    }
   }
-}
 
-// @media only screen and (max-width: 768px) and (min-width: 501px) {
-//   .mission_header {
-//     padding-top: 5rem !important;
-//     padding-bottom: 3rem;
-//   }
-//
-//   .mission_content {
-//     padding-left: 10rem !important;
-//     padding-right: 10rem;
-//   }
-// }
-//
-// @media (max-width: 500px) {
-//   .mission_header {
-//     padding-top: 5rem !important;
-//     padding-bottom: 3rem;
-//   }
-//
-//   .columns_container {
-//     padding-bottom: 3rem;
-//     .column {
-//       padding: 3rem !important;
-//
-//       #money_house {
-//         margin-top: 0rem !important;
-//       }
-//     }
-//   }
-// }
+  // @media only screen and (max-width: 768px) and (min-width: 501px) {
+  //   .mission_header {
+  //     padding-top: 5rem !important;
+  //     padding-bottom: 3rem;
+  //   }
+  //
+  //   .mission_content {
+  //     padding-left: 10rem !important;
+  //     padding-right: 10rem;
+  //   }
+  // }
+  //
+  // @media (max-width: 500px) {
+  //   .mission_header {
+  //     padding-top: 5rem !important;
+  //     padding-bottom: 3rem;
+  //   }
+  //
+  //   .columns_container {
+  //     padding-bottom: 3rem;
+  //     .column {
+  //       padding: 3rem !important;
+  //
+  //       #money_house {
+  //         margin-top: 0rem !important;
+  //       }
+  //     }
+  //   }
+  // }
+}
