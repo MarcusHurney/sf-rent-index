@@ -186,22 +186,36 @@ class DemoMap extends Component {
   render() {
     return (
       <div className="demo_map_container">
-        <div className="map" ref="map" />
-        <div className="query-results">
-          {this.state.searchResults.map(place => {
-            let boundGetPlaceDetails = this.getPlaceDetails.bind(
-              null,
-              place.place_id
-            );
+        <div className="content_gutter">
+          <div className="demo_header">
+            <h2>What We're Building</h2>
 
-            return (
-              <div key={place.id} onClick={boundGetPlaceDetails}>
-                <a href="#resultmap">
-                  <PropertyDetails place={place} />
-                </a>
-              </div>
-            );
-          })}
+            <p>
+              Preview a small set of data from people that have already signed
+              up.
+            </p>
+          </div>
+
+          <div className="map_container">
+            <div className="map" ref="map" />
+
+            <div className="query-results">
+              {this.state.searchResults.map(place => {
+                let boundGetPlaceDetails = this.getPlaceDetails.bind(
+                  null,
+                  place.place_id
+                );
+
+                return (
+                  <div key={place.id} onClick={boundGetPlaceDetails}>
+                    <a href="#resultmap">
+                      <PropertyDetails place={place} />
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     );

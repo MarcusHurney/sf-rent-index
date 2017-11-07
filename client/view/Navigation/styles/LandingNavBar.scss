@@ -20,4 +20,8 @@ nav {
       background-color: $primary_red;
     }
   }
+
+  .navbar-item:hover {
+    background-color: white !important;
+  }
 }

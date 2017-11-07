@@ -28,7 +28,6 @@ const muiTheme = getMuiTheme({
     primary1Color: '#123466',
     primary2Color: '#123466',
     primary3Color: '#123466',
-    textColor: '#fff',
     canvasColor: '#fff',
     borderColor: '#343434',
     shadowColor: '#343434'
@@ -357,7 +356,7 @@ class Signup extends Component {
     return (
       <div className="signup_container">
         <div className="header_container">
-          <h2>Contribute Your Rent Data Anonymously</h2>
+          <h2>Contribute Your Rent Info Anonymously</h2>
           <h3 className="under-heading">
             Help bring transparency to San Francisco's rental market
           </h3>
@@ -431,6 +430,7 @@ class Signup extends Component {
 
                     <StepContent className="step_content">
                       <Field
+                        id="bedrooms_selector"
                         name="bedrooms"
                         component={this.renderSelectField}
                         label="bedrooms"
@@ -473,6 +473,7 @@ class Signup extends Component {
                       </Field>
 
                       <Field
+                        id="roommates_selector"
                         name="roommates"
                         component={this.renderSelectField}
                         label="roommates"
@@ -515,6 +516,7 @@ class Signup extends Component {
                       </Field>
 
                       <Field
+                        id="sqfeet_selector"
                         name="square_feet"
                         component={this.renderSelectField}
                         label="square feet"

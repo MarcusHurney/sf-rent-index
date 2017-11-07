@@ -1,10 +1,70 @@
 .demo_map_container {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: $primary_background_color;
+  background-image: url('./images/linked_icons.svg');
+  background-position: 5px 0px;
+  background-size: 300px 300px;
+  background-repeat: no-repeat;
+  padding-bottom: 5rem;
+
+  .content_gutter {
+    width: 80vw;
+    margin: 0 auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-top: 1px solid $headers;
+    margin-top: 6rem;
+
+    .demo_header {
+      width: 35vw;
+      text-align: center;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+
+      h2 {
+        font-family: Helvetica, serif;
+        color: #ff5745;
+        font-size: 24px;
+        line-height: 27px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      p {
+        padding-top: 2rem;
+        font-family: Helvetica, serif;
+        color: #545760;
+        font-size: 18px;
+        line-height: 30px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+      }
+    }
+
+    .map_container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .map {
+        width: 90vw;
+        height: 70vh;
+      }
+
+      .query-results {
+        border: 1px dashed brown;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  }
+
+  /// other stuff
 
   .practice-search {
     margin: 1rem auto;
@@ -41,18 +101,6 @@
     color: #fff;
     margin: auto 1rem;
     background-color: #c3d694;
-  }
-
-  .map {
-    width: 90vw;
-    height: 50vh;
-  }
-
-  .query-results {
-    border: 1px solid blue;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
   }
 
   .back-to-top-btn {
