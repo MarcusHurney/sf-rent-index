@@ -7,7 +7,7 @@ var TRANSPORT = mailgun.TRANSPORT;
 exports.sendInternalEmail = function() {
 	TRANSPORT.sendMail({
 		to: ['varun.bhartia@gmail.com', 'marcushurney@gmail.com'],
-		from: 'varun.bhartia@gmail.com',
+		from: 'hello@sfrentindex.com',
 		subject: 'New Form Submission',
 		text: "test"
 	});
