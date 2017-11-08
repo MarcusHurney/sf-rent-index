@@ -142,7 +142,7 @@ const Testimonials = () => (
             </blockquote>
 
             <hr className="testimonials-hr" />
-            <p>&#8212; Varun Barhtia</p>
+            <p>&#8212; Varun Bhartia</p>
           </div>
         </div>
       </div>
