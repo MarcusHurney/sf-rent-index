@@ -13,7 +13,7 @@ import {
   isSubmitting,
   hasSubmitSucceeded,
   hasSubmitFailed
-} from 'redux-form'
+} from 'redux-form';
 
 // mutations
 import { signupWithoutPassword } from '../../../state/Signup/mutations';
@@ -36,18 +36,22 @@ const validate = values => {
     'roommates',
     'perks',
     'email'
-  ]
+  ];
+
   const testForNumber = (value, field) => {
     if (value && isNaN(Number(value))) {
       errors[field] = 'Must be a number';
     } else {
       errors[field] = undefined;
     }
-  }
+  };
 
   requiredFields.forEach(field => {
+    let value = values[field];
+    console.log(`Field: ${field} -- Value: ${value}`);
+
     if (!values[field]) {
-      errors[field] = 'Required'
+      errors[field] = 'Required';
     }
   });
 
@@ -55,13 +59,15 @@ const validate = values => {
     return testForNumber(values[field], field);
   }
 
-  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+  if (
+    values.email &&
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+  ) {
     errors.email = 'Invalid email address';
   }
-   
-  return errors;
-}
 
+  return errors;
+};
 
 const SignupForm = reduxForm({
   form: 'signupForm',
@@ -69,7 +75,7 @@ const SignupForm = reduxForm({
 })(Signup);
 
 export default compose(
-  connect((state) => {
+  connect(state => {
     return {
       initialValues: {
         lease_start: new Date(2017, 0, 1).valueOf(),

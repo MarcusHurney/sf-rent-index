@@ -50,11 +50,17 @@ const muiTheme = getMuiTheme({
 });
 
 class Signup extends Component {
-  state = {
-    address: '',
-    finished: false,
-    stepIndex: 0
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      address: '',
+      finished: false,
+      stepIndex: 0
+    };
+
+    this.renderAddressInput = this.renderAddressInput.bind(this);
+  }
 
   handleAddressInput = address => {
     this.setState({ address });
@@ -127,10 +133,16 @@ class Signup extends Component {
     );
   };
 
-  renderAddressInput = ({ input: { onChange, value }, meta }) => {
+  renderAddressInput = ({
+    input: { onChange, value, onBlur },
+    meta: { touched, error }
+  }) => {
     const inputProps = {
       value,
       onChange,
+      onBlur: () => {
+        this.props.touch('street_address');
+      },
       type: 'search',
       placeholder: '1580 Gough Street, San Francisco, CA',
       autoFocus: true
@@ -162,6 +174,9 @@ class Signup extends Component {
           autocompleteItem={this.renderSuggestion}
           googleLogo={false}
         />
+        <div className="street_error_container">
+          {touched && (error && <span className="street_error">{error}</span>)}
+        </div>
       </div>
     );
   };
@@ -173,16 +188,13 @@ class Signup extends Component {
     meta: { touched, error, warning }
   }) => {
     return (
-      <div className="input_container">
+      <div className="currency_input_container">
         <div>
-          <div className="currency_input_container">
+          <div className="currency_input_wrapper">
             <span className="currency_symbol">$</span>
             <input {...input} placeholder={label} type={type} />
+            {touched && (error && <div className="input_error">{error}</div>)}
           </div>
-
-          {touched &&
-            ((error && <span className="input_error">{error}</span>) ||
-              (warning && <span>{warning}</span>))}
         </div>
       </div>
     );
@@ -198,10 +210,7 @@ class Signup extends Component {
       <div className="input_container">
         <div>
           <input {...input} placeholder={label} type={type} />
-
-          {touched &&
-            ((error && <span className="input_error">{error}</span>) ||
-              (warning && <span>{warning}</span>))}
+          {touched && (error && <div className="input_error">{error}</div>)}
         </div>
       </div>
     );
@@ -300,7 +309,7 @@ class Signup extends Component {
       );
     });
 
-    return <div>{checkboxes}</div>;
+    return <div className="checkbox_container">{checkboxes}</div>;
   };
 
   renderStepActions = step => {
