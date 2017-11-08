@@ -44,6 +44,8 @@
     "image-webpack-loader": "^3.4.2",
     "lodash": "^4.17.4",
     "material-ui": "^0.19.1",
+    "nodemailer": "^2.3.0",
+    "nodemailer-mailgun-transport": "^1.2.4",
     "moment": "^2.18.1",
     "mongoose": "^4.11.7",
     "node-sass": "^4.5.3",
