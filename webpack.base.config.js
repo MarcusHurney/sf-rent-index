@@ -47,7 +47,18 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: 'client/index.html' }),
+    new HtmlWebpackPlugin({
+      template: 'client/index.html',
+      favicon: path.join('./client/images', 'sf-favicon.png'),
+      filename: 'index.html',
+      minify: {
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: true,
+        useShortDoctype: true
+      }
+    }),
     new ExtractTextPlugin('styles.css'),
     new webpack.EnvironmentPlugin(['NODE_ENV'])
   ]
