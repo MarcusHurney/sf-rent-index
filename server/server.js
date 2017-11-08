@@ -18,7 +18,7 @@ const { MY_MONGO_URI } = require('./config/keys.js');
 const app = express();
 
 // Check for environment and define baths
-const isDevelopment = process.env.NODE_ENV !== "production";
+const isDevelopment = process.env.NODE_ENV !== 'production';
 const BUILD_DIR = path.resolve(__dirname, '../build');
 const HTML_FILE = path.resolve(__dirname, '../client/index.html');
 const baseCompiler = webpack(webpackBaseConfig);
@@ -33,8 +33,8 @@ mongoose.Promise = global.Promise;
 // on success or failure
 mongoose.connect(MONGO_URI, { useMongoClient: true });
 mongoose.connection
-    .once('open', () => console.log('Connected to MongoLab instance.'))
-    .on('error', error => console.log('Error connecting to MongoLab:', error));
+  .once('open', () => console.log('Connected to MongoLab instance.'))
+  .on('error', error => console.log('Error connecting to MongoLab:', error));
 
 // Configures express to use sessions.  This places an encrypted identifier
 // on the users cookie.  When a user makes a request, this middleware examines
@@ -42,15 +42,17 @@ mongoose.connection
 // The cookie itself only contains the id of a session; more data about the session
 // is stored inside of MongoDB.
 
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: 'aaabbbccc',
-  store: new MongoStore({
-    url: MONGO_URI,
-    autoReconnect: true
+app.use(
+  session({
+    resave: true,
+    saveUninitialized: true,
+    secret: 'aaabbbccc',
+    store: new MongoStore({
+      url: MONGO_URI,
+      autoReconnect: true
+    })
   })
-}));
+);
 
 // Passport is wired into express as a middleware. When a request comes in,
 // Passport will examine the request's session (as set by the above config) and
@@ -58,16 +60,19 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/graphql', expressGraphQL({
-  schema,
-  graphiql: true
-}));
+app.use(
+  '/graphql',
+  expressGraphQL({
+    schema,
+    graphiql: true
+  })
+);
 
 if (isDevelopment) {
   app.use(webpackMiddleware(baseCompiler));
 } else {
   app.use(express.static(BUILD_DIR));
-  app.get("*", (req, res) => res.sendFile(HTML_FILE));
+  app.get('*', (req, res) => res.sendFile(HTML_FILE));
 }
 
 module.exports = app;
