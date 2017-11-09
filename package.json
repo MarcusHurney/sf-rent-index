@@ -40,7 +40,6 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "graphql": "^0.10.5",
-    "halogen": "^0.2.0",
     "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.4.2",
     "lodash": "^4.17.4",
@@ -62,7 +61,6 @@
     "react-router-dom": "^4.1.2",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
-
     "sass-loader": "^6.0.6",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
