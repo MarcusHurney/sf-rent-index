@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,500,700|Roboto:400,500,700');
+
 $headers: #343434;
 $main_font_color: #545760;
 $primary_background_color: white;
@@ -5,6 +7,10 @@ $teal_primary: #8cd3d8;
 $primary_red: #ff584c;
 $secondary_navy: #123466;
 $error_red: #f44336;
+
+* {
+  font-family: 'Cabin', sans-serif;
+}
 
 html {
   height: 100vh;
@@ -16,7 +22,6 @@ body {
   padding: 0;
   background-color: $primary_background_color;
   min-height: 100vh;
-  font-family: 'Lucida Grande';
 
   a {
     text-decoration: none;
@@ -27,7 +32,6 @@ body {
     @import '../node_modules/bulma/bulma.sass';
     @import url('https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css');
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-    @import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave');
     @import './view/Navigation/styles/index.scss';
     @import './view/Landing/styles/index.scss';
     @import './view/Login/styles/index.scss';

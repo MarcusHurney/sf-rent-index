@@ -1,10 +1,10 @@
 .mission_image_container {
   width: 100vw;
-  min-height: 130vh;
-  background-image: url('./images/map_background.svg'),
-    url('./images/layers1.svg'), url('./images/light_gry_network.svg');
-  background-position: 100px 200px, 15px 115px, 100% 100%;
-  background-size: 65px 65px, 275px 275px, 300px 300px;
+  min-height: 110vh;
+  background-image: url('./images/layers1.svg'),
+    url('./images/light_gry_network.svg');
+  background-position: 15px 130px, 100% 100%;
+  background-size: 275px 275px, 300px 300px;
   background-repeat: no-repeat;
 
   .mission_container {
@@ -27,7 +27,7 @@
 
       .mission_header {
         padding-top: 4rem;
-        font-family: Helvetica, serif;
+        font-family: 'Roboto', sans-serif;
         color: #ff5745;
         font-size: 24px;
         line-height: 27px;
@@ -38,25 +38,27 @@
       }
 
       .bold_header {
+        font-family: 'Roboto', sans-serif;
         font-size: 50px;
         line-height: 60px;
         margin-top: 35px;
         padding-bottom: 20px;
         color: $secondary_navy;
         text-align: center;
+        font-weight: 600;
       }
 
       .sub_bold_header {
         width: 35vw;
         text-align: center;
-        font-family: Helvetica, serif;
+        // font-family: Helvetica, serif;
         color: #545760;
         font-size: 18px;
         line-height: 30px;
         margin-top: 5px;
         margin-bottom: 20px;
         font-weight: 600;
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
       }
     }
 
@@ -74,7 +76,7 @@
         .media-content {
           p {
             color: #ff5745;
-            font-family: Helvetica, serif;
+            font-family: 'Roboto', sans-serif;
             text-transform: uppercase;
             font-size: 18px;
             line-height: 1.5;
@@ -91,6 +93,7 @@
       .mission_content {
         padding-left: 1rem;
         color: $main_font_color;
+        font-size: 16px;
       }
     }
   }

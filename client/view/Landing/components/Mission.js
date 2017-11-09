@@ -19,7 +19,7 @@ const Mission = () => (
         <div className="column">
           <div className="card">
             <div className="card-image">
-              <figure id="keys" className="image is-128x128">
+              <figure id="keys" className="image is-96x96">
                 <img src={landlord} alt="orange map icon" />
               </figure>
             </div>
@@ -44,7 +44,7 @@ const Mission = () => (
         <div className="column">
           <div className="card">
             <div className="card-image">
-              <figure id="light_grey_house" className="image is-128x128">
+              <figure id="light_grey_house" className="image is-96x96">
                 <img src={light_grey_house} alt="orange map icon" />
               </figure>
             </div>
@@ -70,7 +70,7 @@ const Mission = () => (
         <div className="column">
           <div className="card">
             <div className="card-image">
-              <figure id="grey_map" className="image is-128x128">
+              <figure id="grey_map" className="image is-96x96">
                 <img src={grey_map} alt="orange map icon" />
               </figure>
             </div>

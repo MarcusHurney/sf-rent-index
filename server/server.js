@@ -13,6 +13,8 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackBaseConfig = require('../webpack.base.config.js');
 const { MY_MONGO_URI } = require('./config/keys.js');
+const formRoutes = require('./routes/formRoutes');
+const emailRoutes = require('./routes/emailRoutes');
 
 // Create a new Express application
 const app = express();
@@ -59,6 +61,10 @@ app.use(
 // assign the current user to the 'req.user' object.  See also servces/auth.js
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Express routes separate from GraphQL server
+// formRoutes(app);
+// emailRoutes(app);
 
 app.use(
   '/graphql',

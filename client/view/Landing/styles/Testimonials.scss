@@ -22,7 +22,7 @@
         color: $primary_red;
         text-align: center;
         text-transform: uppercase;
-        font-family: Helvetica, serif;
+        font-family: 'Roboto', sans-serif;
         font-size: 24px;
         line-height: 27px;
         letter-spacing: 4px;
@@ -32,12 +32,12 @@
       p {
         text-align: center;
         padding-top: 2rem;
-        font-family: Helvetica, serif;
+        // font-family: Helvetica, serif;
         color: #545760;
         font-size: 18px;
         line-height: 30px;
         font-weight: 600;
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
       }
     }
 
@@ -67,7 +67,7 @@
           padding-left: 1rem !important;
 
           blockquote {
-            font-family: Helvetica;
+            // font-family: Helvetica;
             border-left: none;
             color: #545760;
             line-height: 1.5;
