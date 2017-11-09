@@ -2,7 +2,7 @@
   min-height: 100vh;
   background-image: url('./images/linked_icons.svg');
   background-position: 5px 0px;
-  background-size: 300px 300px;
+  background-size: 200px 200px;
   background-repeat: no-repeat;
   padding-bottom: 5rem;
 
@@ -14,7 +14,7 @@
     justify-content: flex-start;
     align-items: center;
     border-top: 1px solid $headers;
-    margin-top: 6rem;
+    margin-top: 2rem;
 
     .demo_header {
       width: 35vw;

@@ -24,7 +24,7 @@
   .sub_hero {
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
-    font-weight: 275;
+    font-weight: 500;
     line-height: 45px;
     color: #fcfcfc;
     padding-top: 4vh;
@@ -34,13 +34,89 @@
     padding-top: 8vh;
 
     button {
-      border: none;
+      transition: all 0.2s;
       background-color: $primary_red;
-      color: white;
+      border: none;
+      width: 150px;
+
+      span {
+        position: absolute;
+        font-family: 'Roboto', sans-serif;
+        color: white;
+        transition: all 0.2s;
+        left: 30px;
+      }
+
+      #hor {
+        width: 11px;
+        height: 1px;
+        border: 1px solid white;
+        color: white;
+        position: relative;
+        transition: all 0.2s;
+        opacity: 0;
+        left: 90px;
+      }
+
+      #vert {
+        width: 1px;
+        height: 11px;
+        border: 1px solid white;
+        transition: all 0.2s;
+        opacity: 0;
+        bottom: 40px;
+        left: 46px;
+        position: relative;
+      }
+
+      #circ {
+        height: 1px;
+        width: 1px;
+        border-radius: 50%;
+        border: 2px solid white;
+        transition: all 0.1s;
+        left: 100px;
+        bottom: 0px;
+        position: absolute;
+        opacity: 0;
+      }
+
       &:hover {
-        background-color: lighten($primary_red, 2%);
-        transition-timing-function: ease;
-        transition: 0.25s;
+        transition: all 0.5s;
+        background-color: transparent;
+        color: $primary_red;
+        border: 2px solid $primary_red;
+
+        span {
+          left: 17px;
+          font-weight: 500;
+          transition: all 0.5s;
+        }
+
+        #hor {
+          width: 11px;
+          height: 1px;
+          border: 1px solid white;
+          opacity: 1;
+          transition: all 0.5s;
+          left: 52px;
+        }
+
+        #vert {
+          transition: all 0.5s;
+          opacity: 1;
+          bottom: 0px;
+        }
+
+        #circ {
+          transition: all 0.5s;
+          opacity: 1;
+          height: 26px;
+          width: 26px;
+          border-radius: 3px;
+          left: 112px;
+          bottom: 7px;
+        }
       }
     }
   }
@@ -74,5 +150,11 @@
   .call_to_action {
     padding-top: 2vh;
     padding-bottom: 2vh;
+
+    button {
+      span {
+        font-family: 'Roboto', sans-serif;
+      }
+    }
   }
 }

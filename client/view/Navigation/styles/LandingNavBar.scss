@@ -1,4 +1,6 @@
 nav {
+  padding-left: 3rem;
+  padding-right: 3rem;
   z-index: 5;
   position: fixed !important;
   top: 0;
@@ -9,19 +11,72 @@ nav {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
-  #nav_btn {
-    color: $primary_red;
-    border-color: $primary_red;
-    transition-timing-function: ease;
-    &:hover {
-      transition-timing-function: ease;
-      transition: 0.25s;
-      color: white;
-      background-color: $primary_red;
-    }
+  a:hover {
+    background-color: transparent !important;
   }
 
-  .navbar-item:hover {
-    background-color: white !important;
+  .navbar-item {
+    button {
+      transition: all 0.2s;
+      background-color: white;
+      border: 2px solid $primary_red;
+      width: 115px;
+
+      span {
+        position: absolute;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        color: $primary_red;
+        transition: all 0.2s;
+        left: 20px;
+      }
+
+      #hor {
+        width: 11px;
+        height: 1px;
+        border: 1px solid $primary_red;
+        position: relative;
+        transition: all 0.2s;
+        opacity: 0;
+        left: 72px;
+      }
+
+      #vert {
+        width: 1px;
+        height: 11px;
+        border: 1px solid $primary_red;
+        transition: all 0.2s;
+        opacity: 0;
+        bottom: 40px;
+        left: 34px;
+        position: relative;
+      }
+
+      &:hover {
+        transition: all 0.5s;
+        background-color: $primary_red;
+        border: 2px solid $primary_red;
+
+        span {
+          color: white;
+          left: 15px;
+          transition: all 0.5s;
+        }
+
+        #hor {
+          border-color: white;
+          opacity: 1;
+          transition: all 0.5s;
+          left: 40px;
+        }
+
+        #vert {
+          border-color: white;
+          transition: all 0.5s;
+          opacity: 1;
+          bottom: 0px;
+        }
+      }
+    }
   }
 }

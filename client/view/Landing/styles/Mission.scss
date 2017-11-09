@@ -1,6 +1,6 @@
 .mission_image_container {
   width: 100vw;
-  min-height: 110vh;
+  min-height: 130vh;
   background-image: url('./images/layers1.svg'),
     url('./images/light_gry_network.svg');
   background-position: 15px 130px, 100% 100%;
@@ -51,7 +51,7 @@
       .sub_bold_header {
         width: 35vw;
         text-align: center;
-        // font-family: Helvetica, serif;
+        font-family: 'Roboto', sans-serif;
         color: #545760;
         font-size: 18px;
         line-height: 30px;

@@ -46,7 +46,7 @@ class LandingNavBar extends Component {
               src={logo}
               alt="San Francisco Rent Index"
               width="150"
-              height="48"
+              height="52"
             />
           </Link>
         </div>
@@ -54,8 +54,10 @@ class LandingNavBar extends Component {
         <div className="navbar-menu">
           <div className="navbar-end">
             <div className="navbar-item">
-              <button id="nav_btn" className="button is-outlined">
-                Contribute
+              <button className="button ">
+                <span>Contribute</span>
+                <i id="hor" />
+                <i id="vert" />
               </button>
             </div>
           </div>
