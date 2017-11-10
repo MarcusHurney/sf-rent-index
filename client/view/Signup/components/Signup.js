@@ -366,9 +366,7 @@ class Signup extends Component {
       <div className="signup_container">
         <div className="header_container">
           <h2>Contribute Your Rent Info Anonymously</h2>
-          <h3 className="under-heading">
-            Help bring transparency to San Francisco's rental market
-          </h3>
+          <p>Help bring transparency to San Francisco's rental market</p>
         </div>
         <MuiThemeProvider muiTheme={muiTheme}>
           <Paper zDepth={1} className="paper_container">
