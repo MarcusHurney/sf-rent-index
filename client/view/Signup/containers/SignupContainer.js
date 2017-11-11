@@ -48,7 +48,7 @@ const validate = values => {
 
   requiredFields.forEach(field => {
     let value = values[field];
-    console.log(`Field: ${field} -- Value: ${value}`);
+    // console.log(`Field: ${field} -- Value: ${value}`);
 
     if (!values[field]) {
       errors[field] = 'Required';

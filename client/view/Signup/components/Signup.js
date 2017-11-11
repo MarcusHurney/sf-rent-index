@@ -7,12 +7,12 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Step, Stepper, StepLabel, StepContent } from 'material-ui/Stepper';
 
 import Paper from 'material-ui/Paper';
-import SelectField from 'material-ui/SelectField';
+// import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import Checkbox from 'material-ui/Checkbox';
+// import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import Slider from 'material-ui/Slider';
+// import Slider from 'material-ui/Slider';
 
 import moment from 'moment';
 import PlacesAutocomplete, {
@@ -21,6 +21,18 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import _ from 'lodash';
 import axios from 'axios';
+
+import {
+  AutoComplete,
+  Checkbox,
+  DatePicker,
+  TimePicker,
+  RadioButtonGroup,
+  SelectField,
+  Slider,
+  TextField,
+  Toggle
+} from 'redux-form-material-ui';
 
 const muiTheme = getMuiTheme({
   fontFamily: 'Helvetica',
@@ -61,6 +73,26 @@ class Signup extends Component {
 
     this.renderAddressInput = this.renderAddressInput.bind(this);
   }
+
+  saveRef = ref => (this.ref = ref);
+
+  formatSliderValues = dateValue => {
+    const date = new Date(dateValue);
+    return `${moment(date).format('MMMM YYYY')}`;
+  };
+
+  renderLeaseDate = type => {
+    const { initialValues, formValues } = this.props;
+    let dateValue;
+
+    if (formValues) {
+      dateValue = formValues[type];
+    } else {
+      dateValue = initialValues[type];
+    }
+
+    return this.formatSliderValues(dateValue);
+  };
 
   handleAddressInput = address => {
     this.setState({ address });
@@ -235,41 +267,6 @@ class Signup extends Component {
     );
   };
 
-  handleSliderUpdates = (input, event, newValue) => {
-    input.onChange(newValue);
-  };
-
-  formatSliderValues = value => {
-    const date = new Date(value);
-    return `${moment(date).format('MMMM YYYY')}`;
-  };
-
-  renderDateSlider = ({ input, label }) => {
-    const startDate = new Date(2015, 0, 1).valueOf();
-    const endDate = new Date(2018, 9, 1).valueOf();
-
-    const boundHandleSliderUpdates = this.handleSliderUpdates.bind(null, input);
-
-    return (
-      <div className="slider_wrapper">
-        <label style={{ fontSize: '1rem' }}>
-          {label}:{' '}
-          <span className="slider_date">
-            {this.formatSliderValues(input.value)}
-          </span>
-        </label>
-
-        <Slider
-          min={startDate}
-          max={endDate}
-          step={1}
-          value={input.value}
-          onChange={boundHandleSliderUpdates}
-        />
-      </div>
-    );
-  };
-
   renderPerks = ({ input, meta }) => {
     const listOfPerks = [
       { label: 'gym', value: 'gym' },
@@ -359,7 +356,14 @@ class Signup extends Component {
   };
 
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
+    const {
+      handleSubmit,
+      pristine,
+      reset,
+      submitting,
+      formValues,
+      initialValues
+    } = this.props;
     const { finished, stepIndex } = this.state;
 
     return (
@@ -368,6 +372,7 @@ class Signup extends Component {
           <h2>Contribute Your Rent Info Anonymously</h2>
           <p>Help bring transparency to San Francisco's rental market</p>
         </div>
+
         <MuiThemeProvider muiTheme={muiTheme}>
           <Paper zDepth={1} className="paper_container">
             <div className="stepper_container">
@@ -394,17 +399,47 @@ class Signup extends Component {
                     <StepLabel>Span of Lease</StepLabel>
 
                     <StepContent className="step_content">
-                      <Field
-                        label="Start Date"
-                        name="lease_start"
-                        component={this.renderDateSlider}
-                      />
+                      <div className="slider_wrapper">
+                        <label style={{ fontSize: '1rem' }}>
+                          Lease Start:{' '}
+                          <span className="slider_date">
+                            {this.renderLeaseDate('lease_start')}
+                          </span>
+                        </label>
 
-                      <Field
-                        label="End Date"
-                        name="lease_end"
-                        component={this.renderDateSlider}
-                      />
+                        <Field
+                          name="lease_start"
+                          component={Slider}
+                          format={null}
+                          defaultValue={new Date().valueOf() - 31556952000}
+                          min={new Date(2015, 0, 1).valueOf()}
+                          max={new Date().valueOf() + 31556952000}
+                          step={1}
+                          ref={this.saveRef}
+                          withRef
+                        />
+                      </div>
+
+                      <div className="slider_wrapper">
+                        <label style={{ fontSize: '1rem' }}>
+                          Lease End:{' '}
+                          <span className="slider_date">
+                            {this.renderLeaseDate('lease_end')}
+                          </span>
+                        </label>
+
+                        <Field
+                          name="lease_end"
+                          component={Slider}
+                          defaultValue={new Date().valueOf()}
+                          format={null}
+                          min={new Date(2015, 0, 1).valueOf()}
+                          max={new Date().valueOf() + 31556952000}
+                          step={1}
+                          ref={this.saveRef}
+                          withRef
+                        />
+                      </div>
 
                       {this.renderStepActions(1)}
                     </StepContent>
@@ -416,16 +451,26 @@ class Signup extends Component {
                     <StepContent id="monthly_totals" className="step_content">
                       <Field
                         name="total_rent"
-                        type="text"
-                        component={this.renderCurrencyInput}
-                        label="total rent -- Ex. $3000"
+                        component={Slider}
+                        style={{ height: 100 }}
+                        axis="y"
+                        defaultValue={0}
+                        format={null}
+                        min={0}
+                        max={6000}
+                        step={6}
                       />
 
                       <Field
                         name="utilities"
-                        type="text"
-                        component={this.renderCurrencyInput}
-                        label="total utilities (approx) -- Ex. $100"
+                        component={Slider}
+                        style={{ height: 100 }}
+                        axis="y"
+                        defaultValue={0}
+                        format={null}
+                        min={0}
+                        max={1000}
+                        step={10}
                       />
 
                       {this.renderStepActions(2)}
