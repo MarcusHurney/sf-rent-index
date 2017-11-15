@@ -55,9 +55,9 @@ const validate = values => {
     }
   });
 
-  if (values.total_rent || values.utilities) {
-    return testForNumber(values[field], field);
-  }
+  // if (values.total_rent || values.utilities) {
+  //   return testForNumber(values[field], field);
+  // }
 
   if (
     values.email &&
@@ -78,12 +78,14 @@ export default compose(
   connect(state => {
     return {
       initialValues: {
-        lease_start: new Date(2017, 0, 1).valueOf(),
-        lease_end: new Date(2018, 9, 1).valueOf()
+        // lease_start: new Date(2017, 0, 1).valueOf(),
+        // lease_end: new Date(2018, 9, 1).valueOf()
+        // total_rent: 0,
+        // utilities: 0
       },
       formValues: getFormValues('signupForm')(state),
       formErrors: getFormSyncErrors('signupForm')(state),
-      fields: getFormMeta('signupForm')(state),
+      fieldsMeta: getFormMeta('signupForm')(state),
       dirty: isDirty('signupForm')(state),
       pristine: isPristine('signupForm')(state),
       valid: isValid('signupForm')(state),

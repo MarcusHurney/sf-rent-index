@@ -7,10 +7,7 @@
 
   input {
     color: $main_font_color !important;
-  }
-
-  input:focus {
-    border-color: purple !important;
+    font-family: 'Cabin', sans-serif !important;
   }
 
   #bedrooms_selector {
@@ -53,7 +50,6 @@
 
     p {
       padding-top: 2rem;
-      // font-family: Helvetica, serif;
       color: #545760;
       font-size: 18px;
       line-height: 30px;
@@ -63,7 +59,7 @@
   }
 
   .paper_container {
-    width: 70vw;
+    width: 90vw;
     min-height: 75vh;
 
     .stepper_container {
@@ -73,6 +69,18 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      .congrats_container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h1 {
+          color: green;
+          font-family: 'Roboto', sans-serif;
+          font-size: 6rem;
+        }
+      }
 
       .step_content {
         width: 40vw;
@@ -127,39 +135,31 @@
           padding-right: 15px;
 
           .slider_date {
+            position: absolute;
             padding-left: 5px;
             color: #545760;
             font-weight: bold;
           }
-        }
 
-        .currency_input_container {
-          margin-top: 2rem;
-          margin-bottom: 2rem;
-
-          .currency_input_wrapper {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
+          .monthly_values {
+            position: absolute;
+            color: $main_font_color;
+            padding-left: 5px;
+            font-weight: bold;
 
             .currency_symbol {
-              margin-top: 2px;
-              margin-right: 10px;
-            }
-
-            .input_error {
-              margin-left: 20px;
-              font-size: 12px;
-              padding-top: 63px;
-              position: absolute;
-              color: $error_red;
+              color: green;
+              padding-right: 3px;
             }
           }
         }
 
-        .currency_input_container:nth-child(2) {
-          margin-bottom: 4rem;
+        .email_wrapper {
+          width: 100%;
+
+          #email_input {
+            // border-color: purple !important;
+          }
         }
 
         textarea {
@@ -172,23 +172,34 @@
           .address_suggestion {
             background-color: #ffffff;
             padding: 10px;
-            color: #555555 !important;
+            color: $main_font_color !important;
             cursor: pointer;
+            font-family: 'Cabin', sans-serif !important;
           }
 
           .active_suggestion {
             background-color: #fafafa;
           }
         }
-
-        .checkbox_container {
-        }
       }
     }
   }
 }
 
+@media (max-width: 1126px) {
+  .header_container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100vw !important;
+  }
+}
+
 @media (max-width: 750px) {
+  .stepper_container {
+    align-items: left !important;
+    padding-left: 1rem;
+  }
+
   .step_content {
     width: 70vw !important;
   }
