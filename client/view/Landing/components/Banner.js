@@ -6,9 +6,9 @@ const Banner = () => (
       <div className="hero">See Actual Rent Data Across San Francisco</div>
 
       <div className="sub_hero">
-        Know what others are paying before signing your next lease
-        <br />
-        Find out if you're paying too much
+        <div>Know what others are paying before signing your next lease</div>
+
+        <div>Find out if you're paying too much</div>
       </div>
 
       <div className="call_to_action">

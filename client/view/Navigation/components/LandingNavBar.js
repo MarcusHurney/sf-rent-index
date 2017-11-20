@@ -54,7 +54,7 @@ class LandingNavBar extends Component {
         <div className="navbar-menu">
           <div className="navbar-end">
             <div className="navbar-item">
-              <button className="button ">
+              <button className="button">
                 <span>Contribute</span>
                 <i id="hor" />
                 <i id="vert" />
