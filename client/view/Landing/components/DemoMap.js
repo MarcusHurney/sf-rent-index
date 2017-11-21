@@ -96,7 +96,9 @@ class DemoMap extends Component {
       : `<img class="place-holder" />`;
 
     let ratingTag = place.rating
-      ? `<div class="rating"><span><i class="fa fa-star"></i></span>${place.rating}</div>`
+      ? `<div class="rating"><span><i class="fa fa-star"></i></span>${
+          place.rating
+        }</div>`
       : '';
 
     let hourTag =
@@ -199,7 +201,7 @@ class DemoMap extends Component {
           <div className="map_container">
             <div className="map" ref="map" />
 
-            <div className="query-results">
+            {/* <div className="query-results">
               {this.state.searchResults.map(place => {
                 let boundGetPlaceDetails = this.getPlaceDetails.bind(
                   null,
@@ -214,7 +216,7 @@ class DemoMap extends Component {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

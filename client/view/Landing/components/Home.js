@@ -7,6 +7,7 @@ import Banner from './Banner';
 import Mission from './Mission';
 import DemoMap from './DemoMap';
 import Testimonials from './Testimonials';
+import WhatToExpect from './WhatToExpect';
 
 class Home extends Component {
   render() {
@@ -23,6 +24,7 @@ class Home extends Component {
           city={'San Francisco'}
         />
         <Testimonials />
+        <WhatToExpect />
         <SignupContainer />
       </div>
     );

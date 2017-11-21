@@ -1,5 +1,6 @@
 .testimonials_container {
   height: auto;
+  padding-top: 5rem;
   padding-bottom: 5rem;
 
   .container {
@@ -31,8 +32,7 @@
 
       p {
         padding-top: 2rem;
-        // font-family: Helvetica, serif;
-        color: #545760;
+        color: $main_font_color;
         font-size: 18px;
         line-height: 30px;
         font-weight: 600;
@@ -83,7 +83,7 @@
         }
 
         .testimonials-hr {
-          border-top: 1px solid $primary_red;
+          height: 1px;
           width: 100%;
           background-color: $primary_red;
         }

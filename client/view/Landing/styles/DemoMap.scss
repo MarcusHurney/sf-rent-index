@@ -35,7 +35,6 @@
 
       p {
         padding-top: 2rem;
-        // font-family: Helvetica, serif;
         color: #545760;
         font-size: 18px;
         line-height: 30px;
@@ -51,6 +50,7 @@
       align-items: center;
 
       .map {
+        border: 1px solid $main_font_color;
         width: 90vw;
         height: 70vh;
       }

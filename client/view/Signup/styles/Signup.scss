@@ -4,6 +4,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border-top: 1px solid #dce0e0;
+  border-bottom: 1px solid #dce0e0;
 
   input {
     color: $main_font_color !important;
@@ -34,8 +36,7 @@
   .header_container {
     width: 40vw;
     text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
+    margin-top: 6rem;
 
     h2 {
       font-family: 'Roboto', sans-serif;
@@ -59,8 +60,11 @@
   }
 
   .paper_container {
-    width: 90vw;
-    min-height: 75vh;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    width: 80vw;
+    min-height: 80vh;
+    padding-bottom: 3rem;
 
     .stepper_container {
       flex: 1;
