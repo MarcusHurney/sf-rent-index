@@ -5,7 +5,7 @@ import SignupContainer from '../../Signup/containers/SignupContainer';
 
 import Banner from './Banner';
 import Mission from './Mission';
-import DemoMap from './DemoMap';
+import DemoMapContainer from '../containers/DemoMapContainer';
 import Testimonials from './Testimonials';
 import WhatToExpect from './WhatToExpect';
 
@@ -16,7 +16,7 @@ class Home extends Component {
         <LandingNavBarContainer />
         <Banner />
         <Mission />
-        <DemoMap
+        <DemoMapContainer
           initialPosition={{
             lat: 37.7749295,
             lng: -122.41941550000001

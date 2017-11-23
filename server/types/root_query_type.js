@@ -1,7 +1,10 @@
 const graphql = require('graphql');
+const mongoose = require('mongoose');
 const UserType = require('./user_type');
+const PropertyType = require('./property_type');
+const Property = mongoose.model('property');
 
-const { GraphQLObjectType } = graphql;
+const { GraphQLObjectType, GraphQLList } = graphql;
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -10,6 +13,12 @@ const RootQueryType = new GraphQLObjectType({
       type: UserType,
       resolve(parentValue, args, { user }) {
         return user;
+      }
+    },
+    properties: {
+      type: new GraphQLList(PropertyType),
+      resolve() {
+        return Property.find({});
       }
     }
   }

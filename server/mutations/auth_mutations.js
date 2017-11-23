@@ -12,6 +12,7 @@ const UserType = require('../types/user_type');
 const PropertyType = require('../types/property_type');
 const AuthService = require('../services/auth_service');
 const PropertyService = require('../services/property_service');
+const TransformService = require('../services/transform_service');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -39,12 +40,17 @@ const mutation = new GraphQLObjectType({
         roommates: { type: GraphQLInt },
         lease_start: { type: GraphQLString },
         lease_end: { type: GraphQLString },
-        perks: { type: new GraphQLList(GraphQLString) },
+        perks: { type: new GraphQLList(GraphQLString) }
       },
       resolve(parentValue, args, req) {
         return AuthService.signupWithoutPassword({ email: args.email, req })
-        .then(user => PropertyService.createProperty({ property_data: args, user_id: user._id }))
-        .catch(error => console.log("couldn't create new user account"));
+          .then(user =>
+            PropertyService.createProperty({
+              property_data: args,
+              user_id: user._id
+            })
+          )
+          .catch(error => console.log("couldn't create new user account"));
       }
     },
     login: {
@@ -61,6 +67,12 @@ const mutation = new GraphQLObjectType({
       type: UserType,
       resolve(parentValue, args, req) {
         return AuthService.logout(req);
+      }
+    },
+    add_lat_lng: {
+      type: PropertyType,
+      resolve() {
+        return TransformService.add_lat_lng();
       }
     }
   }

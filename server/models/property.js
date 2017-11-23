@@ -9,14 +9,17 @@ const PropertySchema = new Schema({
   lat_lng: [Number],
   street_address: String,
   bedrooms: Number,
+  bathrooms: Number,
   square_feet: Number,
   total_rent: Number,
   // room_rent: Number,
-  utilities: Number,
+  // utilities: Number,
   roommates: Number,
   lease_start: Date,
   lease_end: Date,
-  perks: [String]
+  lease_type: String,
+  perks: [String],
+  rent_includes: [String]
 });
 
 mongoose.model('property', PropertySchema);
