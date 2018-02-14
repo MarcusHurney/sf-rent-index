@@ -10,6 +10,10 @@ import Testimonials from './Testimonials';
 import WhatToExpect from './WhatToExpect';
 
 class Home extends Component {
+  componentWillMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div className="home_container">

@@ -1,9 +1,4 @@
 const MY_MONGO_URI =
-  'mongodb://rentadmin:wash1440@ds127994.mlab.com:27994/sfrentindex';
+  'mongodb://marcus:rent@ds235788.mlab.com:35788/sf-rent-index';
 
-const GOOGLE_MAPS_API_KEY = 'AIzaSyDUrx_YPvU2zc5NocO5zTEUcULjDwOrO8c';
-
-module.exports = {
-  MY_MONGO_URI,
-  GOOGLE_MAPS_API_KEY
-};
+module.exports = { MY_MONGO_URI };

@@ -92,6 +92,12 @@
         opacity: 0;
       }
 
+      &:focus,
+      &:active {
+        outline: none !important;
+        box-shadow: none;
+      }
+
       &:hover {
         transition: all 0.5s;
         background-color: transparent;

@@ -238,7 +238,7 @@ class Signup extends Component {
       },
       type: 'search',
       placeholder: '1580 Gough Street, San Francisco, CA',
-      autoFocus: true
+      autoFocus: false
     };
 
     const config = {
@@ -743,7 +743,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="signup_container">
+      <div id="signup" className="signup_container">
         <div className="header_container">
           <h2>Contribute Your Rent Info Anonymously</h2>
           <p>Help bring transparency to San Francisco's rental market</p>

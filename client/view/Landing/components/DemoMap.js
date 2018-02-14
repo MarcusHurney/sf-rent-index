@@ -27,6 +27,7 @@ class DemoMap extends Component {
       this.props.data.properties.length
     ) {
       const { properties } = this.props.data;
+
       this.renderPropertiesMap(properties);
     } else {
       console.log('No properties to render maintain the initial map');
@@ -173,11 +174,15 @@ class DemoMap extends Component {
           </div>
 
           <div class="card-grid">
-            <div>Utilities: $${property.utilities}</div>
+            <div>Roommates: ${property.roommates}</div>
           </div>
 
           <div class="card-grid">
-            <div>Roommates: ${property.roommates}</div>
+            <div>Bedrooms: $${property.bedrooms}</div>
+          </div>
+          
+          <div class="card-grid">
+            <div>Total Rent: $${property.total_rent}</div>
           </div>
         </div>
       </div>

@@ -9,7 +9,6 @@ const getProperties = gql`
       lease_start
       lease_end
       total_rent
-      utilities
       roommates
       bedrooms
       square_feet

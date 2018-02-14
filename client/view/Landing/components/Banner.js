@@ -12,7 +12,10 @@ const Banner = () => (
       </div>
 
       <div className="call_to_action">
-        <button className="button is-medium">
+        <button
+          className="button is-medium"
+          onClick={() => document.getElementById('signup').scrollIntoView()}
+        >
           <span>Contribute</span>
           <i id="hor" />
           <i id="vert" />
