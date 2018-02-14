@@ -9,7 +9,7 @@ const RouterConfig = () => (
   <Router hashType="slash">
     <div>
       <Route exact path="/" component={Home} />
-      <Route path="/map" component={MapViewContainer} />
+      {/* <Route path="/map" component={MapViewContainer} /> */}
     </div>
   </Router>
 );

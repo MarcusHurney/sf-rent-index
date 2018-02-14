@@ -13,7 +13,7 @@ class LandingNavBar extends Component {
   componentWillUpdate(nextProps) {
     if (!this.props.data.currentUser && nextProps.data.currentUser) {
       // push to MapView component
-      this.props.history.push('map');
+      // this.props.history.push('map');
     }
   }
 
