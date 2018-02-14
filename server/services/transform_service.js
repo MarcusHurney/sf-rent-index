@@ -5,36 +5,28 @@ const PlacesAutocomplete = require('react-places-autocomplete');
 const axios = require('axios');
 
 const add_lat_lng = () => {
-  axios({
-    method: 'get',
-    url:
-      'https://maps.googleapis.com/maps/api/js?Search=1520+Gough+Street?key=AIzaSyA45xCeil4r_ANDyr60Q44-fXfFp7CU74c&libraries=geometry,places',
+  Property.find({}).then(properties => {
+    properties.forEach(property => {
+      axios({
+        method: 'get',
+        url: `https://maps.googleapis.com/maps/api/geocode/json?address=${
+          property.street_address
+        }&key=AIzaSyDUrx_YPvU2zc5NocO5zTEUcULjDwOrO8c`,
 
-    headers: {
-      'content-type': 'application/json',
-      'response-type': 'application/json'
-    }
-  }).then(res => {
-    // console.log(JSON.stringify(res));
-    // console.log(Object.keys(res.data['0']));
-    console.log(Object.keys(res));
-    console.log(res.data['0']);
+        headers: {
+          'content-type': 'application/json',
+          'response-type': 'application/json'
+        }
+      }).then(res => {
+        console.log(
+          `Street Address: ${property.street_address} -- ${
+            res.data.results[0].geometry.location
+          }`
+        );
+        // console.log(res.data.results[0].geometry.location);
+      });
+    });
   });
-
-  // Property.find({}).then(properties => {
-  //   properties.forEach(property => {
-  //     PlacesAutocomplete.geocodeByAddress(property.street_address)
-  //       .then(results => {
-  //         return PlacesAutocomplete.getLatLng(results[0]);
-  //       })
-  //       .then(geolocation => {
-  //         console.log(geolocation);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   });
-  // });
 };
 
 const addLeaseEnd = () => {

@@ -1,4 +1,4 @@
-# sfrentmaps
+# sfrentindex
 
 1. Clone repo
 2. CD into repo
