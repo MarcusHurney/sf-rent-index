@@ -180,10 +180,6 @@ class DemoMap extends Component {
           <div class="card-grid">
             <div>Bedrooms: $${property.bedrooms}</div>
           </div>
-          
-          <div class="card-grid">
-            <div>Total Rent: $${property.total_rent}</div>
-          </div>
         </div>
       </div>
     `;
